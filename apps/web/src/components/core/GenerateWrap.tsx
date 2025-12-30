@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { ConfettiButton } from "@/components/ui/confetti"
 import {
   Card,
   CardDescription,
@@ -105,9 +106,9 @@ export default function GenerateWrap() {
           </div>
         </CardPanel>
         <CardFooter>
-          <Button className="w-full" type="submit" disabled={isLoading}>
+         <ConfettiButton className="w-full" type="submit" disabled={isLoading}> 
             {isLoading ? "Generating..." : "Generate"}
-          </Button>
+            </ConfettiButton>
         </CardFooter>
       </Form>
     </Card>
