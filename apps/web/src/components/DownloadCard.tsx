@@ -68,9 +68,12 @@ export function DownloadCard({
                 <p className="text-sm text-gray-600">GitHub Wrapped</p>
               </div>
             </div>
-            <Badge variant="secondary" className="bg-gray-200 text-gray-700 border-gray-300" style={{ backgroundColor: '#e5e7eb', color: '#374151', borderColor: '#d1d5db' }}>
-              {year} Wrap
-            </Badge>
+            <div className="flex flex-col items-end gap-2">
+              <Badge variant="secondary" className="bg-gray-200 text-gray-700 border-gray-300" style={{ backgroundColor: '#e5e7eb', color: '#374151', borderColor: '#d1d5db' }}>
+                {year} Wrap
+              </Badge>
+            
+            </div>
           </div>
 
           <div className="text-center space-y-1">
@@ -138,6 +141,10 @@ export function DownloadCard({
                 </Badge>
               ))}
             </div>
+          </div>
+
+          <div className="text-center pt-2">
+            <h2 className="text-base sm:text-lg font-bold italic tracking-tight text-gray-900">CodeWrap</h2>
           </div>
         </CardContent>
       </Card>
