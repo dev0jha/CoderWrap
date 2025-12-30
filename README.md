@@ -1,135 +1,125 @@
-# Turborepo starter
+# CoderWrap 🚀
 
-This Turborepo starter is maintained by the Turborepo core team.
+Turn your GitHub activity into a beautiful yearly wrap — showcasing your commits, languages, and streaks in a shareable image.
 
-## Using this example
+![CoderWrap Preview](apps/web/public/CoderWrap.png)
 
-Run the following command:
+## ✨ Features
 
-```sh
-npx create-turbo@latest
+- 🎨 **Beautiful Design** - Clean, modern interface with dark/light mode support
+- 📊 **Comprehensive Stats** - Total commits, current streak, top languages, and more
+- 🖼️ **Shareable Images** - Download your wrap as a high-quality image
+- 🔓 **No Login Required** - Uses only public GitHub data via GitHub API
+- ⚡ **Fast & Free** - Generate your wrap in seconds, completely free
+- 🌐 **Direct Links** - Share your wrap with custom URLs: `/wrap/[username]/[year]`
+
+## 🎯 Perfect For
+
+- GitHub READMEs
+- Developer portfolios
+- LinkedIn posts
+- Year-in-review tweets
+- Showcasing your coding journey
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 20+ or Bun
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/dev0jha/CodeWrap.git
+
+# Navigate to the project directory
+cd CodeWrap
+
+# Install dependencies
+bun install
+# or
+npm install
+
+# Run the development server
+bun dev
+# or
+npm run dev
 ```
 
-## What's inside?
+Open [http://localhost:3000](http://localhost:3000) to see the application.
 
-This Turborepo includes the following packages/apps:
+## 🏗️ Tech Stack
 
-### Apps and Packages
+- **Framework:** [Next.js 16](https://nextjs.org/) with React 19
+- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+- **UI Components:** Custom components with [Base UI](https://base-ui.com/)
+- **Animations:** [Motion](https://motion.dev/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Image Generation:** [html-to-image](https://github.com/bubkoo/html-to-image)
+- **Theme:** [next-themes](https://github.com/pacocoursey/next-themes)
+- **Package Manager:** [Bun](https://bun.sh/)
+- **Monorepo:** [Turborepo](https://turbo.build/)
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## 📁 Project Structure
 
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+codewrap/
+├── apps/
+│   └── web/                 # Next.js application
+│       ├── src/
+│       │   ├── app/         # App router pages
+│       │   ├── components/  # React components
+│       │   ├── lib/         # Utility functions
+│       │   └── hooks/       # Custom React hooks
+│       └── public/          # Static assets
+├── packages/
+│   ├── eslint-config/       # Shared ESLint configurations
+│   └── typescript-config/   # Shared TypeScript configurations
+└── turbo.json              # Turborepo configuration
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## 🔧 Configuration
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+The project uses GitHub's public API to fetch user statistics. No API token is required for basic usage, but you may hit rate limits with heavy usage.
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+## 📝 Usage
 
-### Develop
+1. Visit the homepage
+2. Enter your GitHub username
+3. Select the year you want to generate
+4. View your personalized wrap
+5. Download and share!
 
-To develop all apps and packages, run the following command:
+Example: [View @dev0jha's 2025 wrap](https://codewrap.vercel.app/wrap/dev0jha/2025)
 
-```
-cd my-turborepo
+## 🤝 Contributing
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## 📄 License
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+This project is open source and available under the [MIT License](LICENSE).
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+## 👨‍💻 Author
 
-### Remote Caching
+**Dev Hari Ojha** ([@dev0jha](https://github.com/dev0jha))
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+## 🌟 Show Your Support
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+Give a ⭐️ if this project helped you!
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+## 📧 Contact
 
-```
-cd my-turborepo
+Feel free to reach out if you have any questions or suggestions!
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+---
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+**Already used by 100+ developers to showcase their year in code!** 🎉
