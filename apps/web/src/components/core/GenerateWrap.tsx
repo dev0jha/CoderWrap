@@ -87,7 +87,7 @@ export default function GenerateWrap() {
                 defaultValue="2025" 
                 items={yearOptions}
                 value={year}
-                onValueChange={(value) => setYear(value)}
+                onValueChange={(value) => setYear(value || "2025")}
                 disabled={isLoading}
               >
                 <SelectTrigger>
