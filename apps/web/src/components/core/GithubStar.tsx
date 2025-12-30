@@ -5,7 +5,7 @@ function GithubStar() {
   return (
     <div className=''>
       <a
-    href="https://github.com/your-username/coderwrap"
+    href="https://github.com/dev0jha/CoderWrap"
     target="_blank"
     rel="noopener noreferrer"
   >
