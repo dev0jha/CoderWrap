@@ -20,5 +20,9 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "html2canvas": "^1.4.1",
+    "node-html-to-image": "^5.0.0"
+  }
 }
