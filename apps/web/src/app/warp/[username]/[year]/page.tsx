@@ -6,6 +6,7 @@ import { fetchGitHubStats, getTopRepos } from '@/lib/github';
 import Container from '@/components/core/Container';
 import { Button } from '@/components/ui/button';
 import { DownloadWrapButton } from '@/components/core/DownloadWrapButton';
+import { EmbedIframeButton } from '@/components/core/EmbedIframeButton';
 import { DownloadCard } from '@/components/DownloadCard';
 import { AchievementBadge } from '@/components/Badge';
 import { Card, CardContent,  } from '@/components/ui/card';
@@ -325,6 +326,7 @@ async function WrapContent({ username, year }: { username: string; year: number 
         
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center">
           <DownloadWrapButton username={username} year={year} />
+          <EmbedIframeButton username={username} year={year} />
           <Button size="lg" className="w-full sm:w-auto">
             <a
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
