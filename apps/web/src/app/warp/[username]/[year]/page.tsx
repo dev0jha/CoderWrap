@@ -126,10 +126,14 @@ async function WrapContent({ username, year }: { username: string; year: number 
       <div id="wrap-container" className="bg-white dark:bg-gray-950">
         <Container className="py-8 sm:py-12 lg:py-16 space-y-8 sm:space-y-12 lg:space-y-16 max-w-4xl px-4 sm:px-6">
       
-      <div className="pb-4 flex items-center gap-2">
+      <div className="pb-4 flex items-center justify-between gap-2">
         <Link href="/">
           <h2 className="text-base sm:text-lg font-Poppins font-bold italic tracking-tight text-gray-900 dark:text-gray-100">CodeWrap</h2>
         </Link>
+        <div className="flex items-center gap-2">
+          <DownloadWrapButton username={username} year={year} iconOnly />
+          <EmbedIframeButton username={username} year={year} iconOnly />
+        </div>
       </div>
 
       <header className="space-y-4 sm:space-y-6">

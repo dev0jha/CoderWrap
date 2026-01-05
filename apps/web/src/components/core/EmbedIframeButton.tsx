@@ -8,9 +8,10 @@ import { CodeIcon, CopyIcon, CheckIcon } from 'lucide-react'
 interface EmbedIframeButtonProps {
   username: string
   year: number
+  iconOnly?: boolean
 }
 
-export function EmbedIframeButton({ username, year }: EmbedIframeButtonProps) {
+export function EmbedIframeButton({ username, year, iconOnly = false }: EmbedIframeButtonProps) {
   const [copied, setCopied] = useState(false)
   const [open, setOpen] = useState(false)
   
@@ -45,9 +46,14 @@ export function EmbedIframeButton({ username, year }: EmbedIframeButtonProps) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger 
         render={
-          <Button size="lg" variant="outline" className="w-full sm:w-auto">
-            <CodeIcon className="w-4 h-4 mr-2" />
-            Embed Code
+          <Button 
+            size={iconOnly ? "icon" : "lg"} 
+            variant="outline" 
+            className={iconOnly ? "" : "w-full sm:w-auto"}
+            title={iconOnly ? "Embed Code" : undefined}
+          >
+            <CodeIcon className={iconOnly ? "w-5 h-5" : "w-4 h-4 mr-2"} />
+            {!iconOnly && "Embed Code"}
           </Button>
         }
       />

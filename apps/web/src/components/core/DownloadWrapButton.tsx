@@ -3,16 +3,19 @@
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 import { toPng } from 'html-to-image'
+import { DownloadIcon, Loader2 } from 'lucide-react'
 
 
 interface DownloadWrapButtonProps {
   username: string
   year: number
+  iconOnly?: boolean
 }
 
 export function DownloadWrapButton({
   username,
   year,
+  iconOnly = false,
 }: DownloadWrapButtonProps) {
   const [isDownloading, setIsDownloading] = useState(false)
 
@@ -54,13 +57,32 @@ export function DownloadWrapButton({
 
   return (
     <Button
-      size="lg"
+      size={iconOnly ? "icon" : "lg"}
       variant="outline"
       onClick={handleDownload}
       disabled={isDownloading}
-      className="w-full sm:w-auto"
+      className={iconOnly ? "" : "w-full sm:w-auto"}
+      title={iconOnly ? "Download as PNG" : undefined}
     >
-      {isDownloading ? 'Generating…' : '📥 Download as PNG'}
+      {isDownloading ? (
+        iconOnly ? (
+          <Loader2 className="w-5 h-5 animate-spin" />
+        ) : (
+          <>
+            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            Generating…
+          </>
+        )
+      ) : (
+        iconOnly ? (
+          <DownloadIcon className="w-5 h-5" />
+        ) : (
+          <>
+            <DownloadIcon className="w-4 h-4 mr-2" />
+            Download as PNG
+          </>
+        )
+      )}
     </Button>
   )
 }
