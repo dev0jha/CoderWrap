@@ -196,7 +196,7 @@ async function WrapContent({ username, year }: { username: string; year: number 
           <StatCard
             title="Longest Streak"
             value={`${stats.longestStreak} days`}
-            suffix="🔥"
+            
           />
           
           <StatCard
