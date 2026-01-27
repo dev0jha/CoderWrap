@@ -51,7 +51,7 @@ export default function GenerateWrap() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!username.trim()) {
       alert("Please enter a GitHub username");
       return;
@@ -63,55 +63,56 @@ export default function GenerateWrap() {
   };
 
   return (
-    <Container className="flex items-center justify-center ">
-    <Card className="w-full max-w-xs">
-      <CardHeader>
-        <CardTitle className="text-center">Generate Wrap</CardTitle>
-        <CardDescription>Generate a personalized wrap based on your GitHub activity.</CardDescription>
-      </CardHeader>
-      <Form onSubmit={handleSubmit}>
-        <CardPanel>
-          <div className="flex flex-col gap-4">
-            <Field>
-              <FieldLabel>Username</FieldLabel>
-              <Input 
-                placeholder="Your GitHub username" 
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                disabled={isLoading}
-              />
-            </Field>
-            <Field>
-              <FieldLabel>Year</FieldLabel>
-              <Select 
-                defaultValue="2025" 
-                items={yearOptions}
-                value={year}
-                onValueChange={(value) => setYear(value || "2025")}
-                disabled={isLoading}
-              >
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectPopup>
-                  {yearOptions.map(({ label, value }) => (
-                    <SelectItem key={value} value={value}>
-                      {label}
-                    </SelectItem>
-                  ))}
-                </SelectPopup>
-              </Select>
-            </Field>
-          </div>
-        </CardPanel>
-        <CardFooter>
-         <ConfettiButton className="w-full" type="submit" disabled={isLoading}> 
-            {isLoading ? "Generating..." : "Generate"}
+    <Container className="flex items-center justify-center py-24">
+      <Card className="w-full max-w-md border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card animate-[fade-in_0.6s_ease-out]">
+        <CardHeader className="text-center space-y-2">
+          <CardTitle className="text-2xl font-inter font-semibold text-foreground">Generate Wrap</CardTitle>
+          <CardDescription className="text-muted-foreground">Generate a personalized wrap based on your GitHub activity.</CardDescription>
+        </CardHeader>
+        <Form onSubmit={handleSubmit}>
+          <CardPanel>
+            <div className="flex flex-col gap-5">
+              <Field>
+                <FieldLabel className="font-medium text-foreground text-sm">Username</FieldLabel>
+                <Input
+                  placeholder="Your GitHub username"
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  disabled={isLoading}
+                  className="border border-input font-jetbrains focus:ring-2 focus:ring-ring transition-all"
+                />
+              </Field>
+              <Field>
+                <FieldLabel className="font-medium text-foreground text-sm">Year</FieldLabel>
+                <Select
+                  defaultValue="2025"
+                  items={yearOptions}
+                  value={year}
+                  onValueChange={(value) => setYear(value || "2025")}
+                  disabled={isLoading}
+                >
+                  <SelectTrigger className="border border-input font-jetbrains focus:ring-2 focus:ring-ring">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectPopup>
+                    {yearOptions.map(({ label, value }) => (
+                      <SelectItem key={value} value={value} className="font-jetbrains">
+                        {label}
+                      </SelectItem>
+                    ))}
+                  </SelectPopup>
+                </Select>
+              </Field>
+            </div>
+          </CardPanel>
+          <CardFooter>
+            <ConfettiButton className="w-full bg-foreground text-background font-medium font-inter hover:bg-foreground/90 transition-colors" type="submit" disabled={isLoading}>
+              {isLoading ? "Generating..." : "Generate"}
             </ConfettiButton>
-        </CardFooter>
-      </Form>
-    </Card>
+          </CardFooter>
+        </Form>
+      </Card>
     </Container>
   );
 }
