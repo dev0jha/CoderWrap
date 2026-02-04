@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/core/theme-provider";
+import FractalTree from "@/components/factal-tree";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
         >
 
           {children}
+          <FractalTree />
         </ThemeProvider>
       </body>
     </html>
