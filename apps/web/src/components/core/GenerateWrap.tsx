@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { ConfettiButton } from "@/components/ui/confetti"
+import { ConfettiButton } from "@/components/ui/confetti";
 import {
   Card,
   CardDescription,
@@ -63,28 +63,36 @@ export default function GenerateWrap() {
   };
 
   return (
-    <Container className="flex items-center justify-center py-24">
-      <Card className="w-full max-w-md border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card animate-[fade-in_0.6s_ease-out]">
-        <CardHeader className="text-center space-y-2">
-          <CardTitle className="text-2xl font-inter font-semibold text-foreground">Generate Wrap</CardTitle>
-          <CardDescription className="text-muted-foreground">Generate a personalized wrap based on your GitHub activity.</CardDescription>
+    <Container className="flex items-center justify-center py-32">
+      <Card className="w-full max-w-lg border border-border shadow-none rounded-none bg-card animate-[fade-in_0.6s_ease-out]">
+        <CardHeader className="text-left space-y-4 p-10 border-b border-border">
+          <CardTitle className="text-4xl font-syne font-bold text-foreground uppercase tracking-tighter">
+            Generate Wrap
+          </CardTitle>
+          <CardDescription className="text-xs font-geist-mono uppercase tracking-widest text-muted-foreground">
+            Enter metadata to retrieve activity report.
+          </CardDescription>
         </CardHeader>
         <Form onSubmit={handleSubmit}>
-          <CardPanel>
-            <div className="flex flex-col gap-5">
-              <Field>
-                <FieldLabel className="font-medium text-foreground text-sm">Username</FieldLabel>
+          <CardPanel className="p-10 space-y-10">
+            <div className="flex flex-col gap-8">
+              <Field className="space-y-3">
+                <FieldLabel className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-geist-mono">
+                  Username
+                </FieldLabel>
                 <Input
-                  placeholder="Your GitHub username"
+                  placeholder="GH_HANDLE"
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   disabled={isLoading}
-                  className="border border-input font-jetbrains focus:ring-2 focus:ring-ring transition-all"
+                  className="rounded-none border-border font-geist-mono focus:ring-1 focus:ring-foreground transition-all uppercase placeholder:opacity-30"
                 />
               </Field>
-              <Field>
-                <FieldLabel className="font-medium text-foreground text-sm">Year</FieldLabel>
+              <Field className="space-y-3">
+                <FieldLabel className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-geist-mono">
+                  Fiscal Year
+                </FieldLabel>
                 <Select
                   defaultValue="2025"
                   items={yearOptions}
@@ -92,12 +100,16 @@ export default function GenerateWrap() {
                   onValueChange={(value) => setYear(value || "2025")}
                   disabled={isLoading}
                 >
-                  <SelectTrigger className="border border-input font-jetbrains focus:ring-2 focus:ring-ring">
+                  <SelectTrigger className="rounded-none border-border font-geist-mono focus:ring-1 focus:ring-foreground">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectPopup>
+                  <SelectPopup className="rounded-none border-border">
                     {yearOptions.map(({ label, value }) => (
-                      <SelectItem key={value} value={value} className="font-jetbrains">
+                      <SelectItem
+                        key={value}
+                        value={value}
+                        className="font-geist-mono rounded-none"
+                      >
                         {label}
                       </SelectItem>
                     ))}
@@ -106,9 +118,13 @@ export default function GenerateWrap() {
               </Field>
             </div>
           </CardPanel>
-          <CardFooter>
-            <ConfettiButton className="w-full bg-foreground text-background font-medium font-inter hover:bg-foreground/90 transition-colors" type="submit" disabled={isLoading}>
-              {isLoading ? "Generating..." : "Generate"}
+          <CardFooter className="p-10 pt-0">
+            <ConfettiButton
+              className="w-full h-14 bg-foreground text-background font-bold font-syne uppercase tracking-widest hover:bg-foreground/90 transition-all rounded-none"
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? "PROCESSSSING..." : "EXECUTE_GENERATE"}
             </ConfettiButton>
           </CardFooter>
         </Form>

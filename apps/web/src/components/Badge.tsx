@@ -1,4 +1,4 @@
-import { Badge as ShadcnBadge } from '@/components/ui/badge';
+import { Badge as ShadcnBadge } from "@/components/ui/badge";
 
 interface BadgeProps {
   title: string;
@@ -7,27 +7,36 @@ interface BadgeProps {
   earned: boolean;
 }
 
-export function AchievementBadge({ title, description, icon, earned }: BadgeProps) {
+export function AchievementBadge({
+  title,
+  description,
+  icon,
+  earned,
+}: BadgeProps) {
   return (
     <div
-      className={`p-4 rounded-lg border-2 transition-all ${
+      className={`p-4 rounded-none border transition-all ${
         earned
-          ? 'border-primary bg-primary/5'
-          : 'border-muted bg-muted/30 opacity-60'
+          ? "border-foreground bg-foreground/5"
+          : "border-border bg-muted/20 opacity-40 grayscale"
       }`}
     >
-      <div className="flex items-start gap-3">
-        <div className="text-3xl">{icon}</div>
-        <div className="flex-1 space-y-1">
-          <div className="flex items-center gap-2">
-            <h4 className="font-semibold text-sm text-gray-900 dark:text-gray-100">{title}</h4>
+      <div className="flex items-start gap-4">
+        <div className="text-4xl filter grayscale">{icon}</div>
+        <div className="flex-1 space-y-2">
+          <div className="flex items-center justify-between">
+            <h4 className="font-bold text-xs uppercase tracking-tighter font-syne text-foreground">
+              {title}
+            </h4>
             {earned && (
-              <ShadcnBadge variant="default" className="text-xs">
+              <span className="text-[8px] uppercase tracking-[0.2em] font-geist-mono text-muted-foreground">
                 Unlocked
-              </ShadcnBadge>
+              </span>
             )}
           </div>
-          <p className="text-xs text-gray-600 dark:text-gray-400">{description}</p>
+          <p className="text-[10px] leading-relaxed text-muted-foreground font-geist-mono uppercase tracking-wide">
+            {description}
+          </p>
         </div>
       </div>
     </div>

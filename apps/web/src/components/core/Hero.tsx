@@ -1,125 +1,131 @@
-import React from 'react'
-import Container from './Container'
+import React from "react";
+import Container from "./Container";
 import { TextGenerateEffect } from "../core/text-generate-effect";
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import Link from 'next/link';
-import Image from 'next/image';
-import { fetchGitHubStats } from '@/lib/github';
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+import Image from "next/image";
+import { fetchGitHubStats } from "@/lib/github";
 
 async function Hero() {
   let stats = null;
   let topLanguages: string[] = [];
 
   try {
-    stats = await fetchGitHubStats('dev0jha', 2025);
+    stats = await fetchGitHubStats("dev0jha", 2025);
     const sortedLanguages = Object.entries(stats.languageStats)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 3);
     topLanguages = sortedLanguages.map(([lang]) => lang);
   } catch (error) {
-    console.error('Failed to fetch GitHub stats:', error);
+    console.error("Failed to fetch GitHub stats:", error);
   }
 
   return (
     <Container>
-      <div className='flex flex-col lg:flex-row items-center justify-between gap-20 py-24'>
-        <div className='flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 animate-[fade-in_0.8s_ease-out]'>
-          <h1 className='text-6xl md:text-7xl lg:text-8xl font-inter font-bold text-foreground tracking-tight'>
-            CoderWrap
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-24 py-32">
+        <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-12 animate-[fade-in_0.8s_ease-out]">
+          <h1 className="text-7xl md:text-8xl lg:text-9xl font-syne font-bold text-foreground tracking-tighter uppercase leading-[0.8]">
+            Code
+            <br />
+            Wrap
           </h1>
 
-          <p className='text-xl md:text-2xl text-muted-foreground max-w-2xl leading-relaxed'>
-            Turn GitHub activity into a beautiful yearly wrap — showcasing your commits, languages, and streaks in a shareable image.
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-xl leading-relaxed font-geist-mono uppercase tracking-tight">
+            Turn GitHub activity into a brutally minimal yearly summary.
+            Commits, languages, and streaks, refined.
           </p>
 
-          <p className='text-base text-muted-foreground max-w-2xl'>
-            Generate a clean, shareable image of your commits, languages, and streaks for any year in seconds—just enter your GitHub username.
-          </p>
+          <div className="flex flex-col items-center lg:items-start gap-6 text-xs uppercase tracking-widest text-muted-foreground font-geist-mono">
+            <div className="space-y-2">
+              <p className="flex items-center gap-3">
+                <span className="text-foreground font-bold">[OK]</span>
+                No login required. Public data only.
+              </p>
+              <p className="flex items-center gap-3">
+                <span className="text-foreground font-bold">[OK]</span>
+                Free forever for developers.
+              </p>
+            </div>
 
-          <p className='text-sm text-muted-foreground max-w-2xl'>
-            Perfect for <span className='text-foreground font-medium'>GitHub READMEs</span>, <span className='text-foreground font-medium'>portfolios</span>, <span className='text-foreground font-medium'>LinkedIn posts</span>, and <span className='text-foreground font-medium'>year-in-review tweets</span>.
-          </p>
-
-          <div className='flex flex-col items-center lg:items-start gap-3 text-sm text-muted-foreground'>
-            <p className='flex items-center gap-2'>
-              <span className='text-foreground'>✓</span>
-              No login required. Uses only your public GitHub data.
-            </p>
-            <p className='flex items-center gap-2'>
-              <span className='text-foreground'>✓</span>
-              Free for developers, forever.
-            </p>
-            <p className='text-foreground font-medium'>
-              Already used by <span className='font-semibold'>100+</span> developers to show off their year in code.
-            </p>
             <Link
-              href='/warp/dev0jha/2025'
-              className='text-foreground hover:text-muted-foreground font-medium transition-colors underline underline-offset-4'
+              href="/warp/dev0jha/2025"
+              className="group flex items-center gap-2 text-foreground font-bold transition-all hover:gap-4 underline decoration-2 underline-offset-8"
             >
-              View a live wrap: @dev0jha →
+              VIEW EXAMPLE: @DEV0JHA{" "}
+              <span className="group-hover:translate-x-1 transition-transform">
+                →
+              </span>
             </Link>
           </div>
         </div>
 
-        <div className='flex-1 flex flex-col items-center gap-6 w-full px-4 sm:px-0 animate-[fade-in_1s_ease-out]'>
-          <Card className='w-full max-w-md border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card'>
-            <CardContent className='p-8 space-y-6'>
-              <div className='flex items-center justify-between gap-3'>
-                <div className='flex items-center gap-3 min-w-0'>
-                  <div className='relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-border flex-shrink-0'>
+        <div className="flex-1 flex flex-col items-center gap-6 w-full max-w-lg animate-[fade-in_1s_ease-out]">
+          <Card className="w-full border border-border shadow-none rounded-none bg-card relative overflow-hidden">
+            <div
+              className="absolute top-0 right-0 p-4 text-[10px] font-geist-mono text-muted-foreground opacity-20 uppercase tracking-[0.5em] vertical-text hidden sm:block"
+              style={{ writingMode: "vertical-rl" }}
+            >
+              DATA_VISUALIZATION_V1.0
+            </div>
+            <CardContent className="p-10 space-y-10">
+              <div className="flex items-center justify-between border-b border-border pb-8">
+                <div className="flex items-center gap-4 min-w-0">
+                  <div className="relative w-14 h-14 rounded-none overflow-hidden border border-border flex-shrink-0">
                     <Image
-                      src='https://github.com/dev0jha.png'
-                      alt='dev0jha'
+                      src="https://github.com/dev0jha.png"
+                      alt="dev0jha"
                       fill
-                      className='object-cover'
+                      className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
                     />
                   </div>
-                  <div className='min-w-0'>
-                    <p className='font-semibold text-sm font-jetbrains text-foreground truncate'>@dev0jha</p>
-                    <p className='text-xs text-muted-foreground'>GitHub Wrapped</p>
+                  <div className="min-w-0">
+                    <p className="font-bold text-sm font-geist-mono text-foreground uppercase tracking-tighter">
+                      @dev0jha
+                    </p>
+                    <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-geist-mono">
+                      Wrapped // 2025
+                    </p>
                   </div>
                 </div>
-                <Badge variant='secondary' className='font-medium font-jetbrains text-xs px-3 py-1'>
-                  2025
-                </Badge>
               </div>
 
-              <div className='grid grid-cols-2 gap-4'>
-                <div className='bg-secondary/50 rounded-lg p-4 border border-border'>
-                  <p className='text-2xl font-bold text-foreground font-jetbrains'>
-                    {stats ? stats.totalCommits.toLocaleString() : '856'}
+              <div className="grid grid-cols-2 gap-px bg-border border border-border">
+                <div className="bg-background p-6">
+                  <p className="text-3xl font-bold text-foreground font-geist-mono tracking-tighter">
+                    {stats ? stats.totalCommits.toLocaleString() : "856"}
                   </p>
-                  <p className='text-xs text-muted-foreground mt-1'>Total Commits</p>
+                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-geist-mono mt-1">
+                    Commits
+                  </p>
                 </div>
-                <div className='bg-secondary/50 rounded-lg p-4 border border-border'>
-                  <p className='text-2xl font-bold text-foreground font-jetbrains'>
-                    {stats ? stats.currentStreak : '32'}
+                <div className="bg-background p-6">
+                  <p className="text-3xl font-bold text-foreground font-geist-mono tracking-tighter text-right">
+                    {stats ? stats.currentStreak : "32"}
                   </p>
-                  <p className='text-xs text-muted-foreground mt-1'>Day Streak 🔥</p>
+                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-geist-mono mt-1 text-right">
+                    Streak 🔥
+                  </p>
                 </div>
               </div>
 
-              <div className='bg-secondary/50 rounded-lg p-4 border border-border'>
-                <p className='text-sm font-semibold text-foreground mb-3'>Top Languages</p>
-                <div className='flex gap-2 flex-wrap'>
-                  {topLanguages.length > 0 ? (
-                    topLanguages.map((lang) => (
-                      <Badge
-                        key={lang}
-                        variant='outline'
-                        className='font-jetbrains text-xs'
-                      >
-                        {lang}
-                      </Badge>
-                    ))
-                  ) : (
-                    <>
-                      <Badge variant='outline' className='font-jetbrains text-xs'>JavaScript</Badge>
-                      <Badge variant='outline' className='font-jetbrains text-xs'>TypeScript</Badge>
-                      <Badge variant='outline' className='font-jetbrains text-xs'>Python</Badge>
-                    </>
-                  )}
+              <div className="space-y-4">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-geist-mono">
+                  Top Stack
+                </p>
+                <div className="flex gap-2 flex-wrap">
+                  {(topLanguages.length > 0
+                    ? topLanguages
+                    : ["TypeScript", "Rust", "Go"]
+                  ).map((lang) => (
+                    <Badge
+                      key={lang}
+                      variant="outline"
+                      className="font-geist-mono text-[9px] uppercase tracking-widest rounded-none border-border px-3 py-1 bg-transparent"
+                    >
+                      {lang}
+                    </Badge>
+                  ))}
                 </div>
               </div>
             </CardContent>
@@ -127,6 +133,6 @@ async function Hero() {
         </div>
       </div>
     </Container>
-  )
+  );
 }
 export default Hero;
