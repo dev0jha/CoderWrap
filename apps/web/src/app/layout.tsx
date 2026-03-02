@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Syne, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/core/theme-provider";
-import FractalTree from "@/components/factal-tree";
 
-const inter = Inter({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-syne",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-jetbrains",
+  variable: "--font-geist-mono",
 });
 
 export const metadata: Metadata = {
@@ -22,7 +20,8 @@ export const metadata: Metadata = {
     shortcut: "/logo.ico",
     apple: "/logo.ico",
   },
-  description: "CoderWrap generates a GitHub Wrapped-style yearly summary for developers",
+  description:
+    "CoderWrap generates a GitHub Wrapped-style yearly summary for developers",
 };
 
 export default function RootLayout({
@@ -33,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${syne.variable} ${geistMono.variable} antialiased font-syne selection:bg-foreground selection:text-background`}
       >
         <ThemeProvider
           attribute="class"
@@ -41,9 +40,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-
           {children}
-          <FractalTree />
         </ThemeProvider>
       </body>
     </html>
