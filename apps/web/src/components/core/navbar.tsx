@@ -17,14 +17,14 @@ const navitems = [
 export default function Navbar() {
   return (
     <div className="border-b border-border sticky top-0 bg-background/50 backdrop-blur-xl z-50">
-      <Container className="py-4 px-6 max-w-7xl mx-auto">
+      <Container className="py-3 max-w-7xl mx-auto">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-12">
             <Link
               href="/"
               className="text-lg font-bold tracking-tighter uppercase font-syne"
             >
-              Codewrap
+              CODEWRAP
             </Link>
             <nav className="flex gap-8">
               {navitems.map((item) => (

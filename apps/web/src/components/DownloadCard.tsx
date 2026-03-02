@@ -70,11 +70,6 @@ export function DownloadCard({
                 </p>
               </div>
             </div>
-            <div className="text-right">
-              <div className="text-4xl font-bold tracking-tighter font-syne italic">
-                CODEWRAP
-              </div>
-            </div>
           </div>
 
           <div className="space-y-2">
@@ -140,7 +135,7 @@ export function DownloadCard({
                 Generated Via
               </p>
               <p className="text-sm font-bold tracking-tighter uppercase underline decoration-2 underline-offset-4">
-                Codewrap.dev
+                Codewrap
               </p>
             </div>
           </div>

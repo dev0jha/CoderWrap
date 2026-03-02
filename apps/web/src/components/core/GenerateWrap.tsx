@@ -63,7 +63,7 @@ export default function GenerateWrap() {
   };
 
   return (
-    <Container className="flex items-center justify-center py-32">
+    <Container className="flex items-center justify-center py-24 lg:py-32">
       <Card className="w-full max-w-lg border border-border shadow-none rounded-none bg-card animate-[fade-in_0.6s_ease-out]">
         <CardHeader className="text-left space-y-4 p-10 border-b border-border">
           <CardTitle className="text-4xl font-syne font-bold text-foreground uppercase tracking-tighter">

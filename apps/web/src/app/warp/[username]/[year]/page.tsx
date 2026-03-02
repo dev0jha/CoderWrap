@@ -4,13 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { fetchGitHubStats, getTopRepos } from "@/lib/github";
 import Container from "@/components/core/Container";
+import Navbar from "@/components/core/navbar";
+import SchematicBackground from "@/components/core/SchematicBackground";
 import { Button } from "@/components/ui/button";
 import { DownloadWrapButton } from "@/components/core/DownloadWrapButton";
 import { EmbedIframeButton } from "@/components/core/EmbedIframeButton";
 import { DownloadCard } from "@/components/DownloadCard";
 import { AchievementBadge } from "@/components/Badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { StatCard } from "@/components/StatCard";
+import { cn } from "@/lib/utils";
 
 import {
   getCommitMessage,
@@ -18,7 +19,6 @@ import {
   getLanguageMessage,
   getStreakMessage,
   getRandomFinalMessage,
-  generateShareText,
 } from "@/lib/wrap-messages";
 
 interface PageProps {
@@ -30,10 +30,16 @@ interface PageProps {
 
 function LoadingSlides() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen space-y-6">
-      <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
-      <p className="text-xl font-medium">Loading your GitHub Wrapped...</p>
-      <p className="text-muted-foreground">Fetching your awesome stats 🚀</p>
+    <div className="flex flex-col items-center justify-center min-h-screen space-y-8 bg-background">
+      <div className="w-12 h-12 border-2 border-foreground border-t-transparent rounded-full animate-spin" />
+      <div className="space-y-3 text-center">
+        <p className="text-xs uppercase tracking-[0.5em] font-geist-mono text-foreground">
+          Fetching Data...
+        </p>
+        <p className="text-[9px] uppercase tracking-widest font-geist-mono text-muted-foreground">
+          Compiling activity report
+        </p>
+      </div>
     </div>
   );
 }
@@ -64,12 +70,7 @@ async function WrapContent({
   const sortedLanguages = Object.entries(stats.languageStats)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 5);
-  const totalLanguages = Object.values(stats.languageStats).reduce(
-    (sum, count) => sum + count,
-    0,
-  );
 
-  const nightOwlCommits = Math.floor(stats.totalCommits * 0.3);
   const badges = [
     {
       title: "Night Owl",
@@ -136,288 +137,415 @@ async function WrapContent({
 
   return (
     <>
-      <div id="wrap-container" className="bg-background">
-        <Container className="py-16 sm:py-24 space-y-16 sm:space-y-24 max-w-5xl px-4 sm:px-8">
-          <div className="flex items-center justify-between border-b border-border pb-10">
-            <Link href="/">
-              <h2 className="text-xl font-syne font-bold uppercase tracking-tighter text-foreground">
-                CodeWrap
-              </h2>
-            </Link>
-            <div className="flex items-center gap-4">
-              <DownloadWrapButton username={username} year={year} iconOnly />
-              <EmbedIframeButton username={username} year={year} iconOnly />
-            </div>
-          </div>
+      <main className="relative min-h-screen bg-[#121212]">
+        <SchematicBackground />
 
-          <header className="space-y-10">
-            <div className="flex flex-col md:flex-row gap-12 items-center md:items-start">
-              <div className="relative w-32 h-32 lg:w-48 lg:h-48 rounded-none border border-border flex-shrink-0 bg-muted overflow-hidden">
-                <Image
-                  src={stats.user.avatar_url}
-                  alt={username}
-                  fill
-                  className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                  priority
-                />
-              </div>
+        <div id="wrap-container" className="relative">
+          {/* Navbar */}
+          <Navbar />
 
-              <div className="flex-1 space-y-6 text-center md:text-left">
-                <div>
-                  <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-syne font-bold tracking-tighter uppercase text-foreground leading-[0.9]">
-                    {stats.user.name || username}
-                  </h1>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-geist-mono mt-4">
-                    Profile_Report // @{stats.user.login}
-                  </p>
+          <Container className="relative">
+            {/* Left Side Decorative Border */}
+            <div
+              className={cn(
+                "pointer-events-none",
+                "absolute inset-y-0 left-0 hidden sm:block",
+                "z-10",
+                "-translate-x-16",
+                "h-full w-10 sm:w-14",
+                "border-r border-[rgba(255,255,255,0.08)]",
+                "bg-[repeating-linear-gradient(315deg,rgba(255,255,255,0.06)_0px,rgba(255,255,255,0.06)_1px,transparent_1px,transparent_10px)]",
+              )}
+            />
+
+            {/* Right Side Decorative Border */}
+            <div
+              className={cn(
+                "pointer-events-none",
+                "absolute inset-y-0 right-0 hidden sm:block",
+                "z-10",
+                "translate-x-16",
+                "h-full w-10 sm:w-14",
+                "border-l border-[rgba(255,255,255,0.08)]",
+                "bg-[repeating-linear-gradient(45deg,rgba(255,255,255,0.06)_0px,rgba(255,255,255,0.06)_1px,transparent_1px,transparent_10px)]",
+              )}
+            />
+
+            {/* Profile Header */}
+            <header className="py-20 lg:py-28 space-y-10 animate-[fade-in_0.8s_ease-out]">
+              <div className="flex flex-col md:flex-row gap-10 lg:gap-14 items-center md:items-start">
+                <div className="relative w-28 h-28 lg:w-40 lg:h-40 rounded-none border border-border shrink-0 bg-muted overflow-hidden">
+                  <Image
+                    src={stats.user.avatar_url}
+                    alt={username}
+                    fill
+                    className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                    priority
+                  />
                 </div>
 
-                {stats.user.bio && (
-                  <p className="text-[10px] uppercase tracking-wide text-muted-foreground font-geist-mono leading-relaxed max-w-2xl opacity-70">
-                    {stats.user.bio}
-                  </p>
-                )}
+                <div className="flex-1 space-y-5 text-center md:text-left">
+                  <div className="space-y-3">
+                    <p className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground font-geist-mono">
+                      Profile_Report // {year}
+                    </p>
+                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-syne font-bold tracking-tighter uppercase text-foreground leading-[0.85]">
+                      {stats.user.name || username}
+                    </h1>
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground font-geist-mono">
+                      @{stats.user.login}
+                    </p>
+                  </div>
 
-                <div className="flex flex-wrap justify-center md:justify-start gap-8 text-[9px] uppercase tracking-[0.4em] font-geist-mono text-muted-foreground">
-                  <span className="flex flex-col gap-1">
-                    <span className="text-foreground font-bold text-lg tracking-tighter">
-                      {stats.user.public_repos}
-                    </span>{" "}
-                    REPOS
-                  </span>
-                  <span className="flex flex-col gap-1">
-                    <span className="text-foreground font-bold text-lg tracking-tighter">
-                      {stats.user.followers}
-                    </span>{" "}
-                    FOLLOWERS
-                  </span>
-                  <span className="flex flex-col gap-1">
-                    <span className="text-foreground font-bold text-lg tracking-tighter">
-                      {stats.user.following}
-                    </span>{" "}
-                    FOLLOWING
-                  </span>
+                  {stats.user.bio && (
+                    <p className="text-[10px] uppercase tracking-wide text-muted-foreground font-geist-mono leading-relaxed max-w-lg opacity-60">
+                      {stats.user.bio}
+                    </p>
+                  )}
+
+                  <div className="flex flex-wrap justify-center md:justify-start gap-8 text-[9px] uppercase tracking-[0.3em] font-geist-mono text-muted-foreground pt-2">
+                    <span className="flex flex-col gap-1">
+                      <span className="text-foreground font-bold text-lg tracking-tighter font-geist-mono">
+                        {stats.user.public_repos}
+                      </span>
+                      Repos
+                    </span>
+                    <span className="flex flex-col gap-1">
+                      <span className="text-foreground font-bold text-lg tracking-tighter font-geist-mono">
+                        {stats.user.followers}
+                      </span>
+                      Followers
+                    </span>
+                    <span className="flex flex-col gap-1">
+                      <span className="text-foreground font-bold text-lg tracking-tighter font-geist-mono">
+                        {stats.user.following}
+                      </span>
+                      Following
+                    </span>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex items-center gap-3 self-start">
+                  <DownloadWrapButton
+                    username={username}
+                    year={year}
+                    iconOnly
+                  />
+                  <EmbedIframeButton username={username} year={year} iconOnly />
                 </div>
               </div>
-            </div>
-          </header>
+            </header>
 
-          <section className="space-y-10 border-t border-border pt-16">
-            <div className="space-y-4">
-              <h2 className="text-xs uppercase tracking-[0.5em] text-muted-foreground font-geist-mono">
-                AGGREGATED_DATA_LOG__{year}
-              </h2>
-              <p className="text-4xl font-syne font-bold uppercase tracking-tighter text-foreground">
-                Sequential Coding Matrix
-              </p>
-            </div>
+            {/* Stats Section */}
+            <section className="space-y-10 border-t border-border pt-16 lg:pt-20 animate-[fade-in_1s_ease-out]">
+              <div className="space-y-3">
+                <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground font-geist-mono">
+                  Aggregated_Data // {year}
+                </p>
+                <h2 className="text-3xl lg:text-4xl font-syne font-bold uppercase tracking-tighter text-foreground">
+                  Sequential Coding Matrix
+                </h2>
+              </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border border border-border">
-              <div className="bg-background p-8 space-y-2">
-                <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
-                  Contributions
-                </p>
-                <p className="text-3xl font-bold font-geist-mono tracking-tighter">
-                  {stats.contributionsThisYear.toLocaleString()}
-                </p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border border border-border">
+                {[
+                  {
+                    label: "Contributions",
+                    value: stats.contributionsThisYear.toLocaleString(),
+                  },
+                  {
+                    label: "Commits",
+                    value: stats.totalCommits.toLocaleString(),
+                  },
+                  { label: "Active_Days", value: stats.activeDays },
+                  { label: "Peak_Streak", value: stats.longestStreak },
+                  { label: "Current_Streak", value: stats.currentStreak },
+                  {
+                    label: "Hot_Month",
+                    value: stats.mostActiveMonth.substring(0, 3).toUpperCase(),
+                  },
+                  { label: "Stars_Earned", value: stats.totalStars },
+                  { label: "Total_Forks", value: stats.totalForks },
+                ].map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="bg-background p-6 lg:p-8 space-y-2"
+                  >
+                    <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
+                      {stat.label}
+                    </p>
+                    <p className="text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground">
+                      {stat.value}
+                    </p>
+                  </div>
+                ))}
               </div>
-              <div className="bg-background p-8 space-y-2">
-                <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
-                  Commits
-                </p>
-                <p className="text-3xl font-bold font-geist-mono tracking-tighter">
-                  {stats.totalCommits.toLocaleString()}
-                </p>
-              </div>
-              <div className="bg-background p-8 space-y-2">
-                <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
-                  Active_Days
-                </p>
-                <p className="text-3xl font-bold font-geist-mono tracking-tighter">
-                  {stats.activeDays}
-                </p>
-              </div>
-              <div className="bg-background p-8 space-y-2">
-                <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
-                  Peak_Streak
-                </p>
-                <p className="text-3xl font-bold font-geist-mono tracking-tighter">
-                  {stats.longestStreak}
-                </p>
-              </div>
-              <div className="bg-background p-8 space-y-2">
-                <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
-                  Current_Streak
-                </p>
-                <p className="text-3xl font-bold font-geist-mono tracking-tighter">
-                  {stats.currentStreak}
-                </p>
-              </div>
-              <div className="bg-background p-8 space-y-2">
-                <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
-                  Hot_Month
-                </p>
-                <p className="text-3xl font-bold font-geist-mono tracking-tighter">
-                  {stats.mostActiveMonth.substring(0, 3).toUpperCase()}
-                </p>
-              </div>
-              <div className="bg-background p-8 space-y-2">
-                <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
-                  Stars_Earned
-                </p>
-                <p className="text-3xl font-bold font-geist-mono tracking-tighter">
-                  {stats.totalStars}
-                </p>
-              </div>
-              <div className="bg-background p-8 space-y-2">
-                <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
-                  Total_Forks
-                </p>
-                <p className="text-3xl font-bold font-geist-mono tracking-tighter">
-                  {stats.totalForks}
-                </p>
-              </div>
-            </div>
 
-            {sortedLanguages.length > 0 && (
-              <div className="space-y-6 pt-10">
-                <h3 className="text-[10px] uppercase tracking-[0.3em] font-geist-mono text-muted-foreground">
-                  Tech_Stack_Audit
-                </h3>
-                <div className="flex flex-wrap gap-4">
-                  {sortedLanguages.map(([language]) => (
+              {/* Collaboration Stats */}
+              <div className="space-y-4 pt-6">
+                <p className="text-[10px] uppercase tracking-[0.3em] font-geist-mono text-muted-foreground">
+                  Collaboration_Metrics
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border border border-border">
+                  {[
+                    {
+                      label: "PRs_Opened",
+                      value: stats.collaborationStats.totalPRs,
+                    },
+                    {
+                      label: "Issues_Opened",
+                      value: stats.collaborationStats.totalIssues,
+                    },
+                    {
+                      label: "Issues_Closed",
+                      value: stats.collaborationStats.issuesClosed,
+                    },
+                    {
+                      label: "Reviews_Given",
+                      value: stats.collaborationStats.reviewsGiven,
+                    },
+                  ].map((stat) => (
                     <div
-                      key={language}
-                      className="px-6 py-3 border border-border text-[10px] uppercase tracking-widest font-geist-mono hover:bg-foreground hover:text-background transition-all cursor-crosshair"
+                      key={stat.label}
+                      className="bg-background p-6 lg:p-8 space-y-2"
                     >
-                      {language}
+                      <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
+                        {stat.label}
+                      </p>
+                      <p className="text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground">
+                        {stat.value}
+                      </p>
                     </div>
                   ))}
                 </div>
               </div>
+
+              {/* Timing Stats */}
+              <div className="space-y-4 pt-6">
+                <p className="text-[10px] uppercase tracking-[0.3em] font-geist-mono text-muted-foreground">
+                  Timing_Analysis
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-border border border-border">
+                  <div className="bg-background p-6 lg:p-8 space-y-2">
+                    <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
+                      Peak_Day
+                    </p>
+                    <p className="text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground uppercase">
+                      {stats.timingStats.mostActiveWeekday.substring(0, 3)}
+                    </p>
+                  </div>
+                  <div className="bg-background p-6 lg:p-8 space-y-2">
+                    <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
+                      Peak_Hour
+                    </p>
+                    <p className="text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground">
+                      {stats.timingStats.peakCodingHour}:00
+                    </p>
+                  </div>
+                  <div className="bg-background p-6 lg:p-8 space-y-2">
+                    <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
+                      Weekend_%
+                    </p>
+                    <p className="text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground">
+                      {weekendPercentage}%
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Languages Section */}
+            {sortedLanguages.length > 0 && (
+              <section className="space-y-6 border-t border-border pt-16 lg:pt-20 mt-16 lg:mt-20 animate-[fade-in_1s_ease-out]">
+                <div className="space-y-3">
+                  <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground font-geist-mono">
+                    Stack_Audit
+                  </p>
+                  <h2 className="text-3xl lg:text-4xl font-syne font-bold uppercase tracking-tighter text-foreground">
+                    Tech Stack
+                  </h2>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  {sortedLanguages.map(([language, count]) => (
+                    <div
+                      key={language}
+                      className="px-5 py-3 border border-border text-[10px] uppercase tracking-widest font-geist-mono hover:bg-foreground hover:text-background transition-all duration-300 cursor-crosshair group"
+                    >
+                      <span>{language}</span>
+                      <span className="ml-3 text-muted-foreground group-hover:text-background/60">
+                        [{count}]
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </section>
             )}
 
+            {/* Top Repo Section */}
             {topRepos.length > 0 && (
-              <div className="space-y-6 pt-10">
-                <h3 className="text-[10px] uppercase tracking-[0.3em] font-geist-mono text-muted-foreground">
-                  Top_Project_Node
-                </h3>
-                <div className="border border-border p-10 group hover:border-foreground transition-all duration-500">
-                  <div className="flex flex-col md:flex-row items-start justify-between gap-8">
-                    <div className="flex-1 space-y-6">
+              <section className="space-y-6 border-t border-border pt-16 lg:pt-20 mt-16 lg:mt-20 animate-[fade-in_1s_ease-out]">
+                <div className="space-y-3">
+                  <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground font-geist-mono">
+                    Featured_Node
+                  </p>
+                  <h2 className="text-3xl lg:text-4xl font-syne font-bold uppercase tracking-tighter text-foreground">
+                    Top Project
+                  </h2>
+                </div>
+                <div className="border border-border p-8 lg:p-10 group hover:border-foreground/40 transition-all duration-500">
+                  <div className="flex flex-col md:flex-row items-start justify-between gap-6">
+                    <div className="flex-1 space-y-4">
                       <a
                         href={topRepos[0].html_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-4xl font-syne font-bold uppercase tracking-tighter text-foreground hover:underline decoration-1 underline-offset-[12px]"
+                        className="text-2xl lg:text-3xl font-syne font-bold uppercase tracking-tighter text-foreground hover:underline decoration-1 underline-offset-8 transition-all"
                       >
                         {topRepos[0].name}
                       </a>
                       {topRepos[0].description && (
-                        <p className="text-[10px] uppercase tracking-wide text-muted-foreground font-geist-mono leading-relaxed max-w-xl">
+                        <p className="text-[10px] uppercase tracking-wide text-muted-foreground font-geist-mono leading-relaxed max-w-lg">
                           {topRepos[0].description}
                         </p>
                       )}
                       {topRepos[0].language && (
-                        <span className="inline-flex items-center gap-3 text-[9px] uppercase tracking-widest font-geist-mono text-foreground font-bold">
+                        <span className="inline-flex items-center gap-2 text-[9px] uppercase tracking-widest font-geist-mono text-foreground font-bold">
                           <span className="w-1.5 h-1.5 bg-foreground"></span>
                           {topRepos[0].language}
                         </span>
                       )}
                     </div>
-                    <div className="flex gap-10 text-[9px] uppercase tracking-[0.2em] font-geist-mono">
+                    <div className="flex gap-8 text-[9px] uppercase tracking-[0.2em] font-geist-mono text-muted-foreground">
                       <span className="flex flex-col gap-1">
-                        <span className="text-foreground font-bold text-xl tracking-tighter">
+                        <span className="text-foreground font-bold text-xl tracking-tighter font-geist-mono">
                           {topRepos[0].stargazers_count}
-                        </span>{" "}
-                        STARS
+                        </span>
+                        Stars
                       </span>
                       <span className="flex flex-col gap-1">
-                        <span className="text-foreground font-bold text-xl tracking-tighter">
+                        <span className="text-foreground font-bold text-xl tracking-tighter font-geist-mono">
                           {topRepos[0].forks_count}
-                        </span>{" "}
-                        FORKS
+                        </span>
+                        Forks
                       </span>
                     </div>
                   </div>
                 </div>
-              </div>
+
+                {/* Additional repos */}
+                {topRepos.length > 1 && (
+                  <div className="grid sm:grid-cols-2 gap-px bg-border border border-border">
+                    {topRepos.slice(1, 5).map((repo) => (
+                      <a
+                        key={repo.name}
+                        href={repo.html_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-background p-6 space-y-3 hover:bg-foreground/2 transition-colors"
+                      >
+                        <p className="text-sm font-syne font-bold uppercase tracking-tighter text-foreground">
+                          {repo.name}
+                        </p>
+                        {repo.description && (
+                          <p className="text-[9px] uppercase tracking-wide text-muted-foreground font-geist-mono leading-relaxed line-clamp-2">
+                            {repo.description}
+                          </p>
+                        )}
+                        <div className="flex items-center gap-4 text-[8px] uppercase tracking-widest font-geist-mono text-muted-foreground">
+                          {repo.language && (
+                            <span className="flex items-center gap-1.5">
+                              <span className="w-1 h-1 bg-muted-foreground"></span>
+                              {repo.language}
+                            </span>
+                          )}
+                          <span>★ {repo.stargazers_count}</span>
+                          <span>⑂ {repo.forks_count}</span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </section>
             )}
 
+            {/* Achievements Section */}
             {earnedBadges.length > 0 && (
-              <div className="space-y-8 pt-10">
-                <h3 className="text-[10px] uppercase tracking-[0.3em] font-geist-mono text-muted-foreground">
-                  ACHIEVEMENTS_COLLECTION [{earnedBadges.length}/{badges.length}
-                  ]
-                </h3>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <section className="space-y-8 border-t border-border pt-16 lg:pt-20 mt-16 lg:mt-20 animate-[fade-in_1s_ease-out]">
+                <div className="space-y-3">
+                  <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground font-geist-mono">
+                    Achievement_Log
+                  </p>
+                  <h2 className="text-3xl lg:text-4xl font-syne font-bold uppercase tracking-tighter text-foreground">
+                    Badges [{earnedBadges.length}/{badges.length}]
+                  </h2>
+                </div>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {earnedBadges.map((badge) => (
                     <AchievementBadge key={badge.title} {...badge} />
                   ))}
                 </div>
-              </div>
+              </section>
             )}
-          </section>
-        </Container>
-      </div>
 
-      <div className="border-t border-border bg-muted/30">
-        <Container className="py-24 max-w-5xl px-8">
-          <section className="space-y-12">
-            <div className="text-left space-y-6">
-              <h3 className="text-6xl font-syne font-bold uppercase tracking-tighter text-foreground leading-[0.8]">
-                Commit
-                <br />
-                To The Record
-              </h3>
-              <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-geist-mono max-w-md">
-                Generate your archival summary. Share your process with the
-                collective.
-              </p>
-            </div>
+            {/* CTA Section */}
+            <section className="border-t border-border pt-16 lg:pt-20 mt-16 lg:mt-20 pb-20 lg:pb-28 animate-[fade-in_1s_ease-out]">
+              <div className="space-y-10">
+                <div className="space-y-4">
+                  <h3 className="text-4xl lg:text-5xl font-syne font-bold uppercase tracking-tighter text-foreground leading-[0.85]">
+                    Commit
+                    <br />
+                    To The Record
+                  </h3>
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-geist-mono max-w-sm">
+                    Generate your archival summary. Share your process with the
+                    collective.
+                  </p>
+                </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <DownloadWrapButton username={username} year={year} />
-              <EmbedIframeButton username={username} year={year} />
-              <Button
-                size="lg"
-                variant="outline"
-                className="h-12 px-8 rounded-none border-border font-geist-mono text-[10px] uppercase tracking-widest"
-              >
-                <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                    `🎯 My ${year} GitHub Wrapped:\n\n` +
-                      `💻 ${stats.totalCommits} commits\n` +
-                      `📦 ${stats.user.public_repos} repos\n` +
-                      `🔥 ${stats.longestStreak} day streak\n` +
-                      `🏆 ${earnedBadges.length} badges earned\n\n` +
-                      `Check out yours at CodeWrap! #GitHubWrapped #${year}`,
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3"
-                >
-                  <span className="text-lg">𝕏</span>
-                  SHARE_STATUS
-                </a>
-              </Button>
-              <Link href="/">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="h-12 px-8 rounded-none border-border font-geist-mono text-[10px] uppercase tracking-widest w-full"
-                >
-                  RETURN_HOME
-                </Button>
-              </Link>
-            </div>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <DownloadWrapButton username={username} year={year} />
+                  <EmbedIframeButton username={username} year={year} />
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                      `My ${year} GitHub Wrapped:\n\n` +
+                        `${stats.totalCommits} commits\n` +
+                        `${stats.user.public_repos} repos\n` +
+                        `${stats.longestStreak} day streak\n` +
+                        `${earnedBadges.length} badges earned\n\n` +
+                        `Check out yours at CodeWrap! #GitHubWrapped #${year}`,
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="h-12 px-8 rounded-none border-border font-geist-mono text-[10px] uppercase tracking-widest"
+                    >
+                      <span className="text-lg">𝕏</span>
+                      Share_Status
+                    </Button>
+                  </a>
+                  <Link href="/">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="h-12 px-8 rounded-none border-border font-geist-mono text-[10px] uppercase tracking-widest w-full"
+                    >
+                      Return_Home
+                    </Button>
+                  </Link>
+                </div>
 
-            <p className="text-[9px] uppercase tracking-[0.5em] text-muted-foreground font-geist-mono opacity-50">
-              Archival session ends. Preparations for {year + 1} initiated.
-            </p>
-          </section>
-        </Container>
-      </div>
+                <p className="text-[9px] uppercase tracking-[0.5em] text-muted-foreground font-geist-mono opacity-40">
+                  Session_{year}_complete // Preparing {year + 1}
+                </p>
+              </div>
+            </section>
+          </Container>
+        </div>
+      </main>
 
       <DownloadCard
         username={stats.user.login}

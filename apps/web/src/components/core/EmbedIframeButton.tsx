@@ -11,7 +11,6 @@ import {
   DialogPanel,
 } from "@/components/ui/dialog";
 import { CodeIcon, CopyIcon, CheckIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 interface EmbedIframeButtonProps {
   username: string;
@@ -61,57 +60,54 @@ export function EmbedIframeButton({
           <Button
             size={iconOnly ? "icon" : "lg"}
             variant="outline"
-            className={cn(
-              "rounded-none border-border font-geist-mono uppercase tracking-widest text-[10px]",
-              iconOnly ? "" : "w-full sm:w-auto h-12 px-8",
-            )}
-            title={iconOnly ? "EMBED_CODE" : undefined}
+            className={iconOnly ? "" : "w-full sm:w-auto"}
+            title={iconOnly ? "Embed Code" : undefined}
           >
-            <CodeIcon className={iconOnly ? "w-4 h-4" : "w-3 h-3 mr-3"} />
-            {!iconOnly && "EMBED_CODE"}
+            <CodeIcon className={iconOnly ? "w-5 h-5" : "w-4 h-4 mr-2"} />
+            {!iconOnly && "Embed Code"}
           </Button>
         }
       />
-      <DialogPopup className="rounded-none border-border bg-background p-0 overflow-hidden max-w-xl">
-        <DialogHeader className="p-8 border-b border-border">
-          <DialogTitle className="font-syne font-bold uppercase tracking-tighter text-2xl">
-            Embed Logic
+      <DialogPopup>
+        <DialogHeader>
+          <DialogTitle className="text-lg font-syne font-bold uppercase tracking-tighter">
+            Embed_Code
           </DialogTitle>
         </DialogHeader>
-        <DialogPanel className="p-8 space-y-8">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-geist-mono">
-            Copy the source fragment to integrate this report.
+        <DialogPanel className="space-y-4">
+          <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-geist-mono">
+            Copy the code below to embed this wrap on your site.
           </p>
 
-          <div className="relative group">
-            <pre className="bg-muted/50 border border-border rounded-none p-6 overflow-x-auto text-[10px] font-geist-mono leading-relaxed text-foreground select-all">
+          <div className="relative">
+            <pre className="bg-secondary/50 border border-border rounded-none p-4 overflow-x-auto text-xs font-geist-mono">
               <code>{iframeCode}</code>
             </pre>
             <Button
               size="sm"
-              variant="outline"
-              className="absolute top-4 right-4 rounded-none h-8 px-4 font-geist-mono text-[9px] uppercase tracking-widest bg-background"
+              variant="ghost"
+              className="absolute top-2 right-2 rounded-none"
               onClick={handleCopy}
             >
               {copied ? (
                 <>
-                  <CheckIcon className="w-3 h-3 mr-2" />
-                  COPIED
+                  <CheckIcon className="w-4 h-4 mr-1" />
+                  Copied!
                 </>
               ) : (
                 <>
-                  <CopyIcon className="w-3 h-3 mr-2" />
-                  COPY_SRC
+                  <CopyIcon className="w-4 h-4 mr-1" />
+                  Copy
                 </>
               )}
             </Button>
           </div>
 
-          <div className="space-y-4">
-            <h4 className="text-[10px] uppercase tracking-[0.3em] font-geist-mono text-muted-foreground">
-              Preview_Render:
+          <div className="bg-foreground/2 border border-border rounded-none p-4">
+            <h4 className="text-[10px] uppercase tracking-[0.3em] font-geist-mono text-muted-foreground mb-3">
+              Preview
             </h4>
-            <div className="border border-border rounded-none overflow-hidden grayscale opacity-50 hover:opacity-100 transition-all duration-500">
+            <div className="bg-background rounded-none border border-border overflow-hidden">
               <iframe
                 src={`${getOrigin()}/warp/${username}/${year}`}
                 width="100%"

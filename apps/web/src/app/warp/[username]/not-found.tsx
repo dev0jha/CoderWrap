@@ -1,34 +1,55 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import Container from "@/components/core/Container";
+import SchematicBackground from "@/components/core/SchematicBackground";
+import Navbar from "@/components/core/navbar";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-6 text-center">
-      <div className="space-y-6 max-w-md">
-        <div className="text-8xl">😕</div>
-        
-        <h1 className="text-4xl md:text-5xl font-bold">
-          User Not Found
-        </h1>
-        
-        <p className="text-lg text-muted-foreground">
-          We couldn&apos;t find a GitHub user with that username. Please check the spelling and try again.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
-          <Link href="/">
-            <Button size="lg">
-              Try Another Username
-            </Button>
-          </Link>
-          
-          <Link href="https://github.com" target="_blank">
-            <Button size="lg" variant="outline">
-              Browse GitHub
-            </Button>
-          </Link>
+    <main className="relative min-h-screen bg-[#121212]">
+      <SchematicBackground />
+      <Navbar />
+      <Container className="relative">
+        <div className="flex flex-col items-center justify-center min-h-[80vh] text-center">
+          <div className="space-y-8 max-w-lg">
+            <div className="space-y-4">
+              <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground font-geist-mono">
+                Error_404
+              </p>
+              <h1 className="text-5xl md:text-6xl font-syne font-bold uppercase tracking-tighter text-foreground leading-[0.85]">
+                User Not
+                <br />
+                Found
+              </h1>
+            </div>
+
+            <p className="text-[10px] uppercase tracking-wide text-muted-foreground font-geist-mono leading-relaxed">
+              Could not locate a GitHub user with that handle. Verify the
+              spelling and retry.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
+              <Link href="/">
+                <Button
+                  size="lg"
+                  className="h-12 px-8 rounded-none bg-foreground text-background font-geist-mono text-[10px] uppercase tracking-widest hover:bg-foreground/90 w-full"
+                >
+                  Retry_Search
+                </Button>
+              </Link>
+              <Link href="https://github.com" target="_blank">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="h-12 px-8 rounded-none border-border font-geist-mono text-[10px] uppercase tracking-widest w-full"
+                >
+                  Browse_GitHub
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </Container>
+    </main>
   );
 }

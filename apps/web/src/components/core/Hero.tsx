@@ -23,20 +23,20 @@ async function Hero() {
 
   return (
     <Container>
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-24 py-32">
-        <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-12 animate-[fade-in_0.8s_ease-out]">
-          <h1 className="text-7xl md:text-8xl lg:text-9xl font-syne font-bold text-foreground tracking-tighter uppercase leading-[0.8]">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-20 py-24 lg:py-32">
+        <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 lg:space-y-10 animate-[fade-in_0.8s_ease-out]">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-syne font-bold text-foreground tracking-tighter uppercase leading-[0.85]">
             Code
             <br />
             Wrap
           </h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-xl leading-relaxed font-geist-mono uppercase tracking-tight">
+          <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-md leading-relaxed font-geist-mono uppercase tracking-tight">
             Turn GitHub activity into a brutally minimal yearly summary.
             Commits, languages, and streaks, refined.
           </p>
 
-          <div className="flex flex-col items-center lg:items-start gap-6 text-xs uppercase tracking-widest text-muted-foreground font-geist-mono">
+          <div className="flex flex-col items-center lg:items-start gap-4 text-xs uppercase tracking-widest text-muted-foreground font-geist-mono">
             <div className="space-y-2">
               <p className="flex items-center gap-3">
                 <span className="text-foreground font-bold">[OK]</span>
@@ -60,7 +60,7 @@ async function Hero() {
           </div>
         </div>
 
-        <div className="flex-1 flex flex-col items-center gap-6 w-full max-w-lg animate-[fade-in_1s_ease-out]">
+        <div className="flex-1 flex flex-col items-center gap-6 w-full max-w-md animate-[fade-in_1s_ease-out]">
           <Card className="w-full border border-border shadow-none rounded-none bg-card relative overflow-hidden">
             <div
               className="absolute top-0 right-0 p-4 text-[10px] font-geist-mono text-muted-foreground opacity-20 uppercase tracking-[0.5em] vertical-text hidden sm:block"

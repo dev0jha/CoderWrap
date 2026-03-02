@@ -4,9 +4,9 @@ import { Github, Twitter, Globe } from "lucide-react";
 
 export default function Footer() {
   return (
-    <div className="border-t border-border mt-24">
+    <div className="border-t border-border">
       <Container>
-        <div className="flex flex-col md:flex-row items-center justify-between py-16 gap-8 border-t border-border mt-32">
+        <div className="flex flex-col md:flex-row items-center justify-between py-12 lg:py-16 gap-6">
           <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-geist-mono">
             © 2025 CODEWRAP // ALL_RIGHTS_RESERVED
           </p>
