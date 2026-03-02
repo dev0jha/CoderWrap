@@ -2,7 +2,6 @@ import React from "react";
 import Container from "./Container";
 import Image from "next/image";
 import Link from "next/link";
-import ThemeToggle from "./theme-toggle";
 import GithubStar from "./GithubStar";
 const navitems = [
   {
@@ -41,8 +40,6 @@ export default function Navbar() {
           </div>
           <div className="flex items-center gap-6">
             <GithubStar />
-            <div className="h-4 w-[1px] bg-border" />
-            <ThemeToggle />
           </div>
         </div>
       </Container>

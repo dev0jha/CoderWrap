@@ -61,42 +61,6 @@
 
 :root {
   --radius: 0px;
-  --background: #ffffff;
-  --foreground: #121212;
-  --card: #ffffff;
-  --card-foreground: #121212;
-  --popover: #ffffff;
-  --popover-foreground: #121212;
-  --primary: #121212;
-  --primary-foreground: #ffffff;
-  --secondary: #f4f4f5;
-  --secondary-foreground: #121212;
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
-  --accent: #f4f4f5;
-  --accent-foreground: #121212;
-  --destructive: #000000;
-  --border: #e4e4e7;
-  --input: #e4e4e7;
-  --ring: #121212;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #121212;
-  --sidebar-primary: #121212;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f4f4f5;
-  --sidebar-accent-foreground: #121212;
-  --sidebar-border: #e4e4e7;
-  --sidebar-ring: #121212;
-  --destructive-foreground: var(--color-white);
-  --info: #121212;
-  --info-foreground: #ffffff;
-  --success: #121212;
-  --success-foreground: #ffffff;
-  --warning: #121212;
-  --warning-foreground: #ffffff;
-}
-
-.dark {
   --background: #121212;
   --foreground: #ffffff;
   --card: #121212;
@@ -130,6 +94,42 @@
   --success-foreground: #121212;
   --warning: #ffffff;
   --warning-foreground: #121212;
+}
+
+.dark {
+  --background: #ffffff;
+  --foreground: #121212;
+  --card: #ffffff;
+  --card-foreground: #121212;
+  --popover: #ffffff;
+  --popover-foreground: #121212;
+  --primary: #121212;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #121212;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #f4f4f5;
+  --accent-foreground: #121212;
+  --destructive: #000000;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #121212;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #121212;
+  --sidebar-primary: #121212;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f4f4f5;
+  --sidebar-accent-foreground: #121212;
+  --sidebar-border: #e4e4e7;
+  --sidebar-ring: #121212;
+  --destructive-foreground: var(--color-white);
+  --info: #121212;
+  --info-foreground: #ffffff;
+  --success: #121212;
+  --success-foreground: #ffffff;
+  --warning: #121212;
+  --warning-foreground: #ffffff;
 }
 
 @layer base {

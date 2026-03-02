@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback, ReactNode } from 'react';
-import { motion, AnimatePresence, PanInfo } from 'framer-motion';
-import ProgressDots from './ProgressDots';
-import { cn } from '@/lib/utils';
+import { useState, useEffect, useCallback, ReactNode } from "react";
+import { motion, AnimatePresence, PanInfo } from "framer-motion";
+import ProgressDots from "./ProgressDots";
+import { cn } from "@/lib/utils";
 
 interface SlideContainerProps {
   children: ReactNode[];
@@ -30,7 +30,10 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
-export default function SlideContainer({ children, initialSlide = 0 }: SlideContainerProps) {
+export default function SlideContainer({
+  children,
+  initialSlide = 0,
+}: SlideContainerProps) {
   const [[page, direction], setPage] = useState([initialSlide, 0]);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -45,36 +48,36 @@ export default function SlideContainer({ children, initialSlide = 0 }: SlideCont
 
       setIsTransitioning(true);
       setPage([newPage, newDirection]);
-      
+
       setTimeout(() => setIsTransitioning(false), 500);
     },
-    [page, children.length, isTransitioning]
+    [page, children.length, isTransitioning],
   );
 
   const goToSlide = useCallback(
     (index: number) => {
       if (isTransitioning || index === page) return;
-      
+
       const newDirection = index > page ? 1 : -1;
       setIsTransitioning(true);
       setPage([index, newDirection]);
-      
+
       setTimeout(() => setIsTransitioning(false), 500);
     },
-    [page, isTransitioning]
+    [page, isTransitioning],
   );
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') {
+      if (e.key === "ArrowLeft") {
         paginate(-1);
-      } else if (e.key === 'ArrowRight') {
+      } else if (e.key === "ArrowRight") {
         paginate(1);
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [paginate]);
 
   const handleDragEnd = (_e: any, { offset, velocity }: PanInfo) => {
@@ -100,7 +103,7 @@ export default function SlideContainer({ children, initialSlide = 0 }: SlideCont
             animate="center"
             exit="exit"
             transition={{
-              x: { type: 'spring', stiffness: 300, damping: 30 },
+              x: { type: "spring", stiffness: 300, damping: 30 },
               opacity: { duration: 0.2 },
             }}
             drag="x"
@@ -132,12 +135,12 @@ export default function SlideContainer({ children, initialSlide = 0 }: SlideCont
           onClick={() => paginate(-1)}
           disabled={isTransitioning}
           className={cn(
-            'absolute left-4 top-1/2 transform -translate-y-1/2 z-10',
-            'w-12 h-12 rounded-full bg-secondary/80 backdrop-blur',
-            'flex items-center justify-center',
-            'hover:bg-secondary transition-colors',
-            'focus:outline-none focus:ring-2 focus:ring-primary',
-            'disabled:opacity-50 disabled:cursor-not-allowed'
+            "absolute left-4 top-1/2 transform -translate-y-1/2 z-10",
+            "w-12 h-12 rounded-none border border-border bg-background/80 backdrop-blur",
+            "flex items-center justify-center",
+            "hover:bg-secondary transition-colors",
+            "focus:outline-none focus:ring-2 focus:ring-primary",
+            "disabled:opacity-50 disabled:cursor-not-allowed",
           )}
           aria-label="Previous slide"
         >
@@ -165,12 +168,12 @@ export default function SlideContainer({ children, initialSlide = 0 }: SlideCont
           onClick={() => paginate(1)}
           disabled={isTransitioning}
           className={cn(
-            'absolute right-4 top-1/2 transform -translate-y-1/2 z-10',
-            'w-12 h-12 rounded-full bg-secondary/80 backdrop-blur',
-            'flex items-center justify-center',
-            'hover:bg-secondary transition-colors',
-            'focus:outline-none focus:ring-2 focus:ring-primary',
-            'disabled:opacity-50 disabled:cursor-not-allowed'
+            "absolute right-4 top-1/2 transform -translate-y-1/2 z-10",
+            "w-12 h-12 rounded-none border border-border bg-background/80 backdrop-blur",
+            "flex items-center justify-center",
+            "hover:bg-secondary transition-colors",
+            "focus:outline-none focus:ring-2 focus:ring-primary",
+            "disabled:opacity-50 disabled:cursor-not-allowed",
           )}
           aria-label="Next slide"
         >
@@ -192,7 +195,7 @@ export default function SlideContainer({ children, initialSlide = 0 }: SlideCont
 
       {/* Slide counter */}
       <div className="absolute top-6 right-6 z-10">
-        <div className="px-4 py-2 rounded-full bg-secondary/80 backdrop-blur text-sm font-medium">
+        <div className="px-6 py-3 rounded-none border border-border bg-background/80 backdrop-blur text-[10px] font-geist-mono uppercase tracking-widest">
           {page + 1} / {children.length}
         </div>
       </div>

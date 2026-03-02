@@ -1,27 +1,39 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Dialog, DialogTrigger, DialogPopup, DialogHeader, DialogTitle, DialogPanel } from '@/components/ui/dialog'
-import { CodeIcon, CopyIcon, CheckIcon } from 'lucide-react'
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogPopup,
+  DialogHeader,
+  DialogTitle,
+  DialogPanel,
+} from "@/components/ui/dialog";
+import { CodeIcon, CopyIcon, CheckIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface EmbedIframeButtonProps {
-  username: string
-  year: number
-  iconOnly?: boolean
+  username: string;
+  year: number;
+  iconOnly?: boolean;
 }
 
-export function EmbedIframeButton({ username, year, iconOnly = false }: EmbedIframeButtonProps) {
-  const [copied, setCopied] = useState(false)
-  const [open, setOpen] = useState(false)
-  
+export function EmbedIframeButton({
+  username,
+  year,
+  iconOnly = false,
+}: EmbedIframeButtonProps) {
+  const [copied, setCopied] = useState(false);
+  const [open, setOpen] = useState(false);
+
   // Get the current origin (works on both client and server)
   const getOrigin = () => {
-    if (typeof window !== 'undefined') {
-      return window.location.origin
+    if (typeof window !== "undefined") {
+      return window.location.origin;
     }
-    return 'http://localhost:3000' // fallback for SSR
-  }
+    return "http://localhost:3000"; // fallback for SSR
+  };
 
   const iframeCode = `<iframe 
   src="${getOrigin()}/warp/${username}/${year}" 
@@ -30,69 +42,76 @@ export function EmbedIframeButton({ username, year, iconOnly = false }: EmbedIfr
   frameborder="0" 
   scrolling="auto"
   title="${username}'s ${year} GitHub Wrap"
-></iframe>`
+></iframe>`;
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(iframeCode)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      await navigator.clipboard.writeText(iframeCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy:', err)
+      console.error("Failed to copy:", err);
     }
-  }
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger 
+      <DialogTrigger
         render={
-          <Button 
-            size={iconOnly ? "icon" : "lg"} 
-            variant="outline" 
-            className={iconOnly ? "" : "w-full sm:w-auto"}
-            title={iconOnly ? "Embed Code" : undefined}
+          <Button
+            size={iconOnly ? "icon" : "lg"}
+            variant="outline"
+            className={cn(
+              "rounded-none border-border font-geist-mono uppercase tracking-widest text-[10px]",
+              iconOnly ? "" : "w-full sm:w-auto h-12 px-8",
+            )}
+            title={iconOnly ? "EMBED_CODE" : undefined}
           >
-            <CodeIcon className={iconOnly ? "w-5 h-5" : "w-4 h-4 mr-2"} />
-            {!iconOnly && "Embed Code"}
+            <CodeIcon className={iconOnly ? "w-4 h-4" : "w-3 h-3 mr-3"} />
+            {!iconOnly && "EMBED_CODE"}
           </Button>
         }
       />
-      <DialogPopup>
-        <DialogHeader>
-          <DialogTitle>Embed This Wrap</DialogTitle>
+      <DialogPopup className="rounded-none border-border bg-background p-0 overflow-hidden max-w-xl">
+        <DialogHeader className="p-8 border-b border-border">
+          <DialogTitle className="font-syne font-bold uppercase tracking-tighter text-2xl">
+            Embed Logic
+          </DialogTitle>
         </DialogHeader>
-        <DialogPanel className="space-y-4">
-          <p className="text-sm text-muted-foreground">
-            Copy the code below to embed this GitHub Wrap on your website:
+        <DialogPanel className="p-8 space-y-8">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-geist-mono">
+            Copy the source fragment to integrate this report.
           </p>
-          
-          <div className="relative">
-            <pre className="bg-secondary/50 border rounded-lg p-4 overflow-x-auto text-xs">
+
+          <div className="relative group">
+            <pre className="bg-muted/50 border border-border rounded-none p-6 overflow-x-auto text-[10px] font-geist-mono leading-relaxed text-foreground select-all">
               <code>{iframeCode}</code>
             </pre>
             <Button
               size="sm"
-              variant="ghost"
-              className="absolute top-2 right-2"
+              variant="outline"
+              className="absolute top-4 right-4 rounded-none h-8 px-4 font-geist-mono text-[9px] uppercase tracking-widest bg-background"
               onClick={handleCopy}
             >
               {copied ? (
                 <>
-                  <CheckIcon className="w-4 h-4 mr-1" />
-                  Copied!
+                  <CheckIcon className="w-3 h-3 mr-2" />
+                  COPIED
                 </>
               ) : (
                 <>
-                  <CopyIcon className="w-4 h-4 mr-1" />
-                  Copy
+                  <CopyIcon className="w-3 h-3 mr-2" />
+                  COPY_SRC
                 </>
               )}
             </Button>
           </div>
 
-          <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
-            <h4 className="text-sm font-semibold mb-2">Preview:</h4>
-            <div className="bg-white dark:bg-gray-950 rounded border overflow-hidden">
+          <div className="space-y-4">
+            <h4 className="text-[10px] uppercase tracking-[0.3em] font-geist-mono text-muted-foreground">
+              Preview_Render:
+            </h4>
+            <div className="border border-border rounded-none overflow-hidden grayscale opacity-50 hover:opacity-100 transition-all duration-500">
               <iframe
                 src={`${getOrigin()}/warp/${username}/${year}`}
                 width="100%"
@@ -102,10 +121,8 @@ export function EmbedIframeButton({ username, year, iconOnly = false }: EmbedIfr
               />
             </div>
           </div>
-
-          
         </DialogPanel>
       </DialogPopup>
     </Dialog>
-  )
+  );
 }
