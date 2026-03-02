@@ -65,8 +65,8 @@ export default function GenerateWrap() {
   return (
     <Container className="flex items-center justify-center py-24 lg:py-32">
       <Card className="w-full max-w-lg border border-border shadow-none rounded-none bg-card animate-[fade-in_0.6s_ease-out]">
-        <CardHeader className="text-left space-y-4 p-10 border-b border-border">
-          <CardTitle className="text-4xl font-syne font-bold text-foreground uppercase tracking-tighter">
+        <CardHeader className="text-left space-y-4 p-6 sm:p-10 border-b border-border">
+          <CardTitle className="text-2xl sm:text-4xl font-syne font-bold text-foreground uppercase tracking-tighter">
             Generate Wrap
           </CardTitle>
           <CardDescription className="text-xs font-geist-mono uppercase tracking-widest text-muted-foreground">
@@ -74,7 +74,7 @@ export default function GenerateWrap() {
           </CardDescription>
         </CardHeader>
         <Form onSubmit={handleSubmit}>
-          <CardPanel className="p-10 space-y-10">
+          <CardPanel className="p-6 sm:p-10 space-y-8 sm:space-y-10">
             <div className="flex flex-col gap-8">
               <Field className="space-y-3">
                 <FieldLabel className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-geist-mono">
@@ -118,7 +118,7 @@ export default function GenerateWrap() {
               </Field>
             </div>
           </CardPanel>
-          <CardFooter className="p-10 pt-0">
+          <CardFooter className="p-6 sm:p-10 pt-0">
             <ConfettiButton
               className="w-full h-14 bg-foreground text-background font-bold font-syne uppercase tracking-widest hover:bg-foreground/90 transition-all rounded-none"
               type="submit"

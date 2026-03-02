@@ -172,9 +172,9 @@ async function WrapContent({
             />
 
             {/* Profile Header */}
-            <header className="py-20 lg:py-28 space-y-10 animate-[fade-in_0.8s_ease-out]">
-              <div className="flex flex-col md:flex-row gap-10 lg:gap-14 items-center md:items-start">
-                <div className="relative w-28 h-28 lg:w-40 lg:h-40 rounded-none border border-border shrink-0 bg-muted overflow-hidden">
+            <header className="py-12 sm:py-20 lg:py-28 space-y-10 animate-[fade-in_0.8s_ease-out]">
+              <div className="flex flex-col md:flex-row gap-6 sm:gap-10 lg:gap-14 items-center md:items-start">
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-40 lg:h-40 rounded-none border border-border shrink-0 bg-muted overflow-hidden">
                   <Image
                     src={stats.user.avatar_url}
                     alt={username}
@@ -189,7 +189,7 @@ async function WrapContent({
                     <p className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground font-geist-mono">
                       Profile_Report // {year}
                     </p>
-                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-syne font-bold tracking-tighter uppercase text-foreground leading-[0.85]">
+                    <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-syne font-bold tracking-tighter uppercase text-foreground leading-[0.85]">
                       {stats.user.name || username}
                     </h1>
                     <p className="text-xs uppercase tracking-widest text-muted-foreground font-geist-mono">
@@ -203,7 +203,7 @@ async function WrapContent({
                     </p>
                   )}
 
-                  <div className="flex flex-wrap justify-center md:justify-start gap-8 text-[9px] uppercase tracking-[0.3em] font-geist-mono text-muted-foreground pt-2">
+                  <div className="flex flex-wrap justify-center md:justify-start gap-4 sm:gap-8 text-[9px] uppercase tracking-[0.3em] font-geist-mono text-muted-foreground pt-2">
                     <span className="flex flex-col gap-1">
                       <span className="text-foreground font-bold text-lg tracking-tighter font-geist-mono">
                         {stats.user.public_repos}
@@ -238,12 +238,12 @@ async function WrapContent({
             </header>
 
             {/* Stats Section */}
-            <section className="space-y-10 border-t border-border pt-16 lg:pt-20 animate-[fade-in_1s_ease-out]">
+            <section className="space-y-8 sm:space-y-10 border-t border-border pt-10 sm:pt-16 lg:pt-20 animate-[fade-in_1s_ease-out]">
               <div className="space-y-3">
                 <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground font-geist-mono">
                   Aggregated_Data // {year}
                 </p>
-                <h2 className="text-3xl lg:text-4xl font-syne font-bold uppercase tracking-tighter text-foreground">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-syne font-bold uppercase tracking-tighter text-foreground">
                   Sequential Coding Matrix
                 </h2>
               </div>
@@ -270,12 +270,12 @@ async function WrapContent({
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="bg-background p-6 lg:p-8 space-y-2"
+                    className="bg-background p-4 sm:p-6 lg:p-8 space-y-2"
                   >
-                    <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
+                    <p className="text-[8px] sm:text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
                       {stat.label}
                     </p>
-                    <p className="text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground">
+                    <p className="text-lg sm:text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground">
                       {stat.value}
                     </p>
                   </div>
@@ -308,12 +308,12 @@ async function WrapContent({
                   ].map((stat) => (
                     <div
                       key={stat.label}
-                      className="bg-background p-6 lg:p-8 space-y-2"
+                      className="bg-background p-4 sm:p-6 lg:p-8 space-y-2"
                     >
-                      <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
+                      <p className="text-[8px] sm:text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
                         {stat.label}
                       </p>
-                      <p className="text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground">
+                      <p className="text-lg sm:text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground">
                         {stat.value}
                       </p>
                     </div>
@@ -326,28 +326,28 @@ async function WrapContent({
                 <p className="text-[10px] uppercase tracking-[0.3em] font-geist-mono text-muted-foreground">
                   Timing_Analysis
                 </p>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-border border border-border">
-                  <div className="bg-background p-6 lg:p-8 space-y-2">
-                    <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
+                <div className="grid grid-cols-3 gap-px bg-border border border-border">
+                  <div className="bg-background p-4 sm:p-6 lg:p-8 space-y-2">
+                    <p className="text-[8px] sm:text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
                       Peak_Day
                     </p>
-                    <p className="text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground uppercase">
+                    <p className="text-lg sm:text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground uppercase">
                       {stats.timingStats.mostActiveWeekday.substring(0, 3)}
                     </p>
                   </div>
-                  <div className="bg-background p-6 lg:p-8 space-y-2">
-                    <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
+                  <div className="bg-background p-4 sm:p-6 lg:p-8 space-y-2">
+                    <p className="text-[8px] sm:text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
                       Peak_Hour
                     </p>
-                    <p className="text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground">
+                    <p className="text-lg sm:text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground">
                       {stats.timingStats.peakCodingHour}:00
                     </p>
                   </div>
-                  <div className="bg-background p-6 lg:p-8 space-y-2">
-                    <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
+                  <div className="bg-background p-4 sm:p-6 lg:p-8 space-y-2">
+                    <p className="text-[8px] sm:text-[9px] uppercase tracking-widest text-muted-foreground font-geist-mono">
                       Weekend_%
                     </p>
-                    <p className="text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground">
+                    <p className="text-lg sm:text-2xl lg:text-3xl font-bold font-geist-mono tracking-tighter text-foreground">
                       {weekendPercentage}%
                     </p>
                   </div>
@@ -357,12 +357,12 @@ async function WrapContent({
 
             {/* Languages Section */}
             {sortedLanguages.length > 0 && (
-              <section className="space-y-6 border-t border-border pt-16 lg:pt-20 mt-16 lg:mt-20 animate-[fade-in_1s_ease-out]">
+              <section className="space-y-6 border-t border-border pt-10 sm:pt-16 lg:pt-20 mt-10 sm:mt-16 lg:mt-20 animate-[fade-in_1s_ease-out]">
                 <div className="space-y-3">
                   <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground font-geist-mono">
                     Stack_Audit
                   </p>
-                  <h2 className="text-3xl lg:text-4xl font-syne font-bold uppercase tracking-tighter text-foreground">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-syne font-bold uppercase tracking-tighter text-foreground">
                     Tech Stack
                   </h2>
                 </div>
@@ -384,23 +384,23 @@ async function WrapContent({
 
             {/* Top Repo Section */}
             {topRepos.length > 0 && (
-              <section className="space-y-6 border-t border-border pt-16 lg:pt-20 mt-16 lg:mt-20 animate-[fade-in_1s_ease-out]">
+              <section className="space-y-6 border-t border-border pt-10 sm:pt-16 lg:pt-20 mt-10 sm:mt-16 lg:mt-20 animate-[fade-in_1s_ease-out]">
                 <div className="space-y-3">
                   <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground font-geist-mono">
                     Featured_Node
                   </p>
-                  <h2 className="text-3xl lg:text-4xl font-syne font-bold uppercase tracking-tighter text-foreground">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-syne font-bold uppercase tracking-tighter text-foreground">
                     Top Project
                   </h2>
                 </div>
-                <div className="border border-border p-8 lg:p-10 group hover:border-foreground/40 transition-all duration-500">
+                <div className="border border-border p-5 sm:p-8 lg:p-10 group hover:border-foreground/40 transition-all duration-500">
                   <div className="flex flex-col md:flex-row items-start justify-between gap-6">
                     <div className="flex-1 space-y-4">
                       <a
                         href={topRepos[0].html_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-2xl lg:text-3xl font-syne font-bold uppercase tracking-tighter text-foreground hover:underline decoration-1 underline-offset-8 transition-all"
+                        className="text-xl sm:text-2xl lg:text-3xl font-syne font-bold uppercase tracking-tighter text-foreground hover:underline decoration-1 underline-offset-8 transition-all"
                       >
                         {topRepos[0].name}
                       </a>
@@ -471,16 +471,16 @@ async function WrapContent({
 
             {/* Achievements Section */}
             {earnedBadges.length > 0 && (
-              <section className="space-y-8 border-t border-border pt-16 lg:pt-20 mt-16 lg:mt-20 animate-[fade-in_1s_ease-out]">
+              <section className="space-y-8 border-t border-border pt-10 sm:pt-16 lg:pt-20 mt-10 sm:mt-16 lg:mt-20 animate-[fade-in_1s_ease-out]">
                 <div className="space-y-3">
                   <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground font-geist-mono">
                     Achievement_Log
                   </p>
-                  <h2 className="text-3xl lg:text-4xl font-syne font-bold uppercase tracking-tighter text-foreground">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-syne font-bold uppercase tracking-tighter text-foreground">
                     Badges [{earnedBadges.length}/{badges.length}]
                   </h2>
                 </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {earnedBadges.map((badge) => (
                     <AchievementBadge key={badge.title} {...badge} />
                   ))}
@@ -489,10 +489,10 @@ async function WrapContent({
             )}
 
             {/* CTA Section */}
-            <section className="border-t border-border pt-16 lg:pt-20 mt-16 lg:mt-20 pb-20 lg:pb-28 animate-[fade-in_1s_ease-out]">
-              <div className="space-y-10">
+            <section className="border-t border-border pt-10 sm:pt-16 lg:pt-20 mt-10 sm:mt-16 lg:mt-20 pb-14 sm:pb-20 lg:pb-28 animate-[fade-in_1s_ease-out]">
+              <div className="space-y-8 sm:space-y-10">
                 <div className="space-y-4">
-                  <h3 className="text-4xl lg:text-5xl font-syne font-bold uppercase tracking-tighter text-foreground leading-[0.85]">
+                  <h3 className="text-3xl sm:text-4xl lg:text-5xl font-syne font-bold uppercase tracking-tighter text-foreground leading-[0.85]">
                     Commit
                     <br />
                     To The Record

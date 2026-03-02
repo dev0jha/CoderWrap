@@ -23,15 +23,15 @@ async function Hero() {
 
   return (
     <Container>
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-20 py-24 lg:py-32">
-        <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 lg:space-y-10 animate-[fade-in_0.8s_ease-out]">
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-syne font-bold text-foreground tracking-tighter uppercase leading-[0.85]">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-10 sm:gap-16 lg:gap-20 py-14 sm:py-24 lg:py-32">
+        <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 sm:space-y-8 lg:space-y-10 animate-[fade-in_0.8s_ease-out]">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-syne font-bold text-foreground tracking-tighter uppercase leading-[0.85]">
             Code
             <br />
             Wrap
           </h1>
 
-          <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-md leading-relaxed font-geist-mono uppercase tracking-tight">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-md leading-relaxed font-geist-mono uppercase tracking-tight">
             Turn GitHub activity into a brutally minimal yearly summary.
             Commits, languages, and streaks, refined.
           </p>
@@ -60,7 +60,7 @@ async function Hero() {
           </div>
         </div>
 
-        <div className="flex-1 flex flex-col items-center gap-6 w-full max-w-md animate-[fade-in_1s_ease-out]">
+        <div className="flex-1 flex flex-col items-center gap-6 w-full max-w-sm sm:max-w-md animate-[fade-in_1s_ease-out]">
           <Card className="w-full border border-border shadow-none rounded-none bg-card relative overflow-hidden">
             <div
               className="absolute top-0 right-0 p-4 text-[10px] font-geist-mono text-muted-foreground opacity-20 uppercase tracking-[0.5em] vertical-text hidden sm:block"
@@ -68,7 +68,7 @@ async function Hero() {
             >
               DATA_VISUALIZATION_V1.0
             </div>
-            <CardContent className="p-10 space-y-10">
+            <CardContent className="p-6 sm:p-10 space-y-8 sm:space-y-10">
               <div className="flex items-center justify-between border-b border-border pb-8">
                 <div className="flex items-center gap-4 min-w-0">
                   <div className="relative w-14 h-14 rounded-none overflow-hidden border border-border flex-shrink-0">
@@ -91,7 +91,7 @@ async function Hero() {
               </div>
 
               <div className="grid grid-cols-2 gap-px bg-border border border-border">
-                <div className="bg-background p-6">
+                <div className="bg-background p-4 sm:p-6">
                   <p className="text-3xl font-bold text-foreground font-geist-mono tracking-tighter">
                     {stats ? stats.totalCommits.toLocaleString() : "856"}
                   </p>
@@ -99,7 +99,7 @@ async function Hero() {
                     Commits
                   </p>
                 </div>
-                <div className="bg-background p-6">
+                <div className="bg-background p-4 sm:p-6">
                   <p className="text-3xl font-bold text-foreground font-geist-mono tracking-tighter text-right">
                     {stats ? stats.currentStreak : "32"}
                   </p>

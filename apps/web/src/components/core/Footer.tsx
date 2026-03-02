@@ -10,7 +10,7 @@ export default function Footer() {
           <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-geist-mono">
             © 2025 CODEWRAP // ALL_RIGHTS_RESERVED
           </p>
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-4 sm:gap-10 flex-wrap justify-center md:justify-start">
             {[
               {
                 icon: Github,

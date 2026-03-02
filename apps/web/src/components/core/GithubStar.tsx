@@ -12,9 +12,16 @@ function GithubStar() {
         <Button
           variant="outline"
           size="sm"
-          className="font-geist-mono text-[10px] tracking-[0.2em] uppercase"
+          className="font-geist-mono text-[10px] tracking-[0.2em] uppercase hidden sm:inline-flex"
         >
           GITHUB_STAR_SOURCE
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          className="font-geist-mono text-[10px] tracking-[0.1em] uppercase sm:hidden px-2"
+        >
+          ★ STAR
         </Button>
       </a>
     </div>
