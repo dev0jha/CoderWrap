@@ -3,10 +3,26 @@ import Footer from "@/components/core/Footer";
 import GenerateWrap from "@/components/core/GenerateWrap";
 import Hero from "@/components/core/Hero";
 import Navbar from "@/components/core/navbar";
+import StarBorders from "@/components/pixel-perfect/star-border";
 import SchematicBackground from "@/components/core/SchematicBackground";
 import { cn } from "@/lib/utils";
 
 import React from "react";
+
+function SectionFrame({ children }: { children: React.ReactNode }) {
+  return (
+    <section className="relative py-1 sm:py-2">
+      <div className="mx-auto max-w-7xl px-0 sm:px-1">
+        <StarBorders
+          className="bg-background/10 border-[rgba(255,255,255,0.12)]"
+          contentClassName="h-full"
+        >
+          {children}
+        </StarBorders>
+      </div>
+    </section>
+  );
+}
 
 function page() {
   return (
@@ -40,9 +56,15 @@ function page() {
         />
 
         <Navbar />
-        <Hero />
-        <GenerateWrap />
-        <Footer />
+        <SectionFrame>
+          <Hero />
+        </SectionFrame>
+        <SectionFrame>
+          <GenerateWrap />
+        </SectionFrame>
+        <SectionFrame>
+          <Footer />
+        </SectionFrame>
       </Container>
     </main>
   );
