@@ -11,7 +11,7 @@ import React from "react";
 
 function SectionFrame({ children }: { children: React.ReactNode }) {
   return (
-    <section className="relative py-1 sm:py-2">
+    <section className="relative py-1 sm:py-2 mb-4 sm:mb-6">
       <div className="mx-auto max-w-7xl px-0 sm:px-1">
         <StarBorders
           className="bg-background/10 border-[rgba(255,255,255,0.12)]"
@@ -56,6 +56,7 @@ function page() {
         />
 
         <Navbar />
+        <div className="mb-4 sm:mb-6" />
         <SectionFrame>
           <Hero />
         </SectionFrame>
