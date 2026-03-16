@@ -54,17 +54,6 @@ export default function Navbar() {
             </nav>
           </div>
           <div className="flex items-center gap-4 sm:gap-6">
-            <nav className="flex sm:hidden gap-4">
-              {navitems.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="text-[10px] uppercase tracking-widest font-geist-mono text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
             <GithubStar />
           </div>
         </div>
