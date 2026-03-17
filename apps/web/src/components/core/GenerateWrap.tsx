@@ -63,9 +63,9 @@ export default function GenerateWrap() {
   };
 
   return (
-    <Container className="flex items-center justify-center py-24 lg:py-32">
-      <Card className="w-full max-w-lg border border-border shadow-none rounded-none bg-card animate-[fade-in_0.6s_ease-out]">
-        <CardHeader className="text-left space-y-4 p-6 sm:p-10 border-b border-border">
+    <Container className="flex items-center justify-center py-16 lg:py-32 px-4 sm:px-6">
+      <Card className="w-full max-w-lg border border-border shadow-2xl rounded-2xl bg-card/50 backdrop-blur-sm animate-[fade-in_0.6s_ease-out] overflow-hidden">
+        <CardHeader className="text-left space-y-4 p-8 sm:p-12 border-b border-border bg-muted/30">
           <CardTitle className="text-2xl sm:text-4xl font-syne font-bold text-foreground uppercase tracking-tighter">
             Generate Wrap
           </CardTitle>
@@ -74,7 +74,7 @@ export default function GenerateWrap() {
           </CardDescription>
         </CardHeader>
         <Form onSubmit={handleSubmit}>
-          <CardPanel className="p-6 sm:p-10 space-y-8 sm:space-y-10">
+          <CardPanel className="p-8 sm:p-12 space-y-8 sm:space-y-10">
             <div className="flex flex-col gap-8">
               <Field className="space-y-3">
                 <FieldLabel className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-geist-mono">
@@ -86,7 +86,7 @@ export default function GenerateWrap() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   disabled={isLoading}
-                  className="rounded-none border-border font-geist-mono focus:ring-1 focus:ring-foreground transition-all uppercase placeholder:opacity-30"
+                  className="rounded-xl border-border font-geist-mono focus:ring-1 focus:ring-foreground transition-all uppercase placeholder:opacity-30 bg-background/50 h-12"
                 />
               </Field>
               <Field className="space-y-3">
@@ -100,15 +100,15 @@ export default function GenerateWrap() {
                   onValueChange={(value) => setYear(value || "2025")}
                   disabled={isLoading}
                 >
-                  <SelectTrigger className="rounded-none border-border font-geist-mono focus:ring-1 focus:ring-foreground">
+                  <SelectTrigger className="rounded-xl border-border font-geist-mono focus:ring-1 focus:ring-foreground bg-background/50 h-12">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectPopup className="rounded-none border-border">
+                  <SelectPopup className="rounded-xl border-border shadow-xl">
                     {yearOptions.map(({ label, value }) => (
                       <SelectItem
                         key={value}
                         value={value}
-                        className="font-geist-mono rounded-none"
+                        className="font-geist-mono rounded-lg"
                       >
                         {label}
                       </SelectItem>
@@ -118,9 +118,9 @@ export default function GenerateWrap() {
               </Field>
             </div>
           </CardPanel>
-          <CardFooter className="p-6 sm:p-10 pt-0">
+          <CardFooter className="p-8 sm:p-12 pt-0">
             <ConfettiButton
-              className="w-full h-14 bg-foreground text-background font-bold font-syne uppercase tracking-widest hover:bg-foreground/90 transition-all rounded-none"
+              className="w-full h-14 bg-foreground text-background font-bold font-syne uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all rounded-xl shadow-lg hover:shadow-foreground/20"
               type="submit"
               disabled={isLoading}
             >
