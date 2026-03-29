@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import MetalButton from "@/components/pixel-perfect/metal-button";
 import Container from "@/components/core/Container";
 import SchematicBackground from "@/components/core/SchematicBackground";
 import Navbar from "@/components/core/navbar";
@@ -30,21 +30,20 @@ export default function NotFound() {
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
               <Link href="/">
-                <Button
-                  size="lg"
-                  className="h-12 px-8 rounded-none bg-foreground text-background font-geist-mono text-[10px] uppercase tracking-widest hover:bg-foreground/90 w-full"
+                <MetalButton
+                  metal="silver"
+                  className="h-12 px-8 font-geist-mono text-[10px] uppercase tracking-widest w-full"
                 >
                   Retry_Search
-                </Button>
+                </MetalButton>
               </Link>
               <Link href="https://github.com" target="_blank">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="h-12 px-8 rounded-none border-border font-geist-mono text-[10px] uppercase tracking-widest w-full"
+                <MetalButton
+                  metal="gunmetal"
+                  className="h-12 px-8 font-geist-mono text-[10px] uppercase tracking-widest w-full"
                 >
                   Browse_GitHub
-                </Button>
+                </MetalButton>
               </Link>
             </div>
           </div>

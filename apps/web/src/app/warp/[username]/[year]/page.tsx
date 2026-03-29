@@ -6,7 +6,7 @@ import { fetchGitHubStats, getTopRepos } from "@/lib/github";
 import Container from "@/components/core/Container";
 import Navbar from "@/components/core/navbar";
 import SchematicBackground from "@/components/core/SchematicBackground";
-import { Button } from "@/components/ui/button";
+import MetalButton from "@/components/pixel-perfect/metal-button";
 import { DownloadWrapButton } from "@/components/core/DownloadWrapButton";
 import { EmbedIframeButton } from "@/components/core/EmbedIframeButton";
 import { DownloadCard } from "@/components/DownloadCard";
@@ -518,23 +518,21 @@ async function WrapContent({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="h-12 px-8 rounded-none border-border font-geist-mono text-[10px] uppercase tracking-widest"
+                    <MetalButton
+                      metal="gold"
+                      className="h-12 px-8 font-geist-mono text-[10px] uppercase tracking-widest"
                     >
                       <span className="text-lg">𝕏</span>
                       Share_Status
-                    </Button>
+                    </MetalButton>
                   </a>
                   <Link href="/">
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="h-12 px-8 rounded-none border-border font-geist-mono text-[10px] uppercase tracking-widest w-full"
+                    <MetalButton
+                      metal="titanium"
+                      className="h-12 px-8 font-geist-mono text-[10px] uppercase tracking-widest w-full"
                     >
                       Return_Home
-                    </Button>
+                    </MetalButton>
                   </Link>
                 </div>
 
