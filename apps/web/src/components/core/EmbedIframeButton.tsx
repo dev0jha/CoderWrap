@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import MetalButton from "@/components/pixel-perfect/metal-button";
+import { cn } from "@/lib/utils";
 import {
   Dialog,
   DialogTrigger,
@@ -57,15 +59,17 @@ export function EmbedIframeButton({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger
         render={
-          <Button
-            size={iconOnly ? "icon" : "lg"}
-            variant="outline"
-            className={iconOnly ? "" : "w-full sm:w-auto"}
+          <MetalButton
+            metal="chrome"
+            className={cn(
+              "font-geist-mono uppercase tracking-widest text-[10px]",
+              iconOnly ? "px-3 py-2" : "w-full sm:w-auto h-12 px-8",
+            )}
             title={iconOnly ? "Embed Code" : undefined}
           >
             <CodeIcon className={iconOnly ? "w-5 h-5" : "w-4 h-4 mr-2"} />
             {!iconOnly && "Embed Code"}
-          </Button>
+          </MetalButton>
         }
       />
       <DialogPopup>

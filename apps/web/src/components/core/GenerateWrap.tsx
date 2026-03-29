@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { ConfettiButton } from "@/components/ui/confetti";
+import MetalButton from "@/components/pixel-perfect/metal-button";
+
 import {
   Card,
   CardDescription,
@@ -119,13 +119,14 @@ export default function GenerateWrap() {
             </div>
           </CardPanel>
           <CardFooter className="p-8 sm:p-12 pt-0">
-            <ConfettiButton
-              className="w-full h-14 bg-foreground text-background font-bold font-syne uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all rounded-xl shadow-lg hover:shadow-foreground/20"
+            <MetalButton
+              metal="rose-gold"
+              className="w-full h-14 font-bold font-syne uppercase tracking-widest"
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? "PROCESSSSING..." : "EXECUTE_GENERATE"}
-            </ConfettiButton>
+              {isLoading ? "PROCESSSSING..." : "GENERATE"}
+            </MetalButton>
           </CardFooter>
         </Form>
       </Card>

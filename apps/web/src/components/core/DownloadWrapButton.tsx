@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import MetalButton from "@/components/pixel-perfect/metal-button";
 import { useState } from "react";
 import { toPng } from "html-to-image";
 import { DownloadIcon, Loader2 } from "lucide-react";
@@ -56,14 +56,13 @@ export function DownloadWrapButton({
   };
 
   return (
-    <Button
-      size={iconOnly ? "icon" : "lg"}
-      variant="outline"
+    <MetalButton
+      metal="silver"
       onClick={handleDownload}
       disabled={isDownloading}
       className={cn(
-        "rounded-none border-border font-geist-mono uppercase tracking-widest text-[10px]",
-        iconOnly ? "" : "w-full sm:w-auto h-12 px-8",
+        "font-geist-mono uppercase tracking-widest text-[10px]",
+        iconOnly ? "px-3 py-2" : "w-full sm:w-auto h-12 px-8",
       )}
       title={iconOnly ? "DOWNLOAD_AS_PNG" : undefined}
     >
@@ -84,6 +83,6 @@ export function DownloadWrapButton({
           DOWNLOAD_PNG
         </>
       )}
-    </Button>
+    </MetalButton>
   );
 }
